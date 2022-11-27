@@ -37,3 +37,10 @@ html, body {
   /* Display above other elements */
   z-index: 5;
 }
+
+/* 320 x 224, arcade resolution! */
+canvas#default{
+  width: 320px;
+  height: 224px;
+  border: 1px solid #000000
+}
