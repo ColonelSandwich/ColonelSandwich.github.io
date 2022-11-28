@@ -11,15 +11,15 @@
   <script src="script.js"></script>
 </head>
 
-<body onload="treesProjectionDemo()">
+<body onload="trees3DProjectionDemo()">
   <!--Parallax background-->
   <div class="parallaxBG">
     <!--Header-->
-    <header class="row">
-      <div class="p-4 col-lg bg-primary text-white">
-        <h1 class="text-center">Michael's Pseudo 3D Page</h1>
-      </div>
-    </header>
+      <header class="row">
+        <div class="p-4 col-lg bg-primary text-white">
+          <h1 class="text-center">Michael's Super Scaler "Pseudo 3D" Page</h1>
+        </div>
+      </header>
 
     <!--Aside Carousel-->
     <aside>
@@ -134,107 +134,43 @@
 
           <p>Actually, I lied! There is ONE more concept we need to go over.</p></br>
 
-          <p>Remember, the screen you're viewing this on is only two-dimensional! In order to render a 3D scene, your
-            device has to take this 3D scene and "flatten" it to a 2D image on your screen. The same applies to our
-            example, where our 2D game world of terrible trees needs to be "flattened" (or more accurately, projected!)
-            onto the 1D screen represented by our blue line.</p></br></br>
+          <p>Currently we have a view into a static game world, but what if we wanted to move around? We can try moving the position of the viewer, but they're not actually part of the game world and can only view it from the outside! Instead, let's introduce the concept of a <u>Camera</u>.</p></br></br>
 
-          <p>So let's figure this out! First, let's simplify this screen to just one tree. If we can figure out how to
-            project one tree then we can absolutely project all of them! I've also decided to make it interactive, so
-            you can change the position of the tree in the scene. Give it a whirl~!</p>
+          <p>The camera is the point within the game world that determines what we can currently see. Our viewer then, is essentially watching a "live feed" of what our camera can currently see. While the camera does have a position within the game world, in order to project everything correctly all points need to be moved AROUND the camera relative to its position and rotation.</p></br></br>
 
-          <!--Slider!-->
-          <label for="canvas1-sliderX">X position</label></br>
-          <input type="range" id="canvas1-sliderX" name="sliderX" min="32" max="288"></br>
-          <label for="canvas1-sliderY">Y position</label></br>
-          <input type="range" id="canvas1-sliderY" name="sliderY" min="32" max="192"></br>
+          <p>As for projecting 3D points onto a 2D plane, it's exactly the same process as before but with an added dimension: the Z axis! The Z axis means "up and down" in our world. Simply use the scale factor of dy/Y and multiply it by the X distance to get our screen X. Do the same for Z, multiply it by the Z distance to get our screen Y, since in our world Y is distance and Z means "up and down."</p></br>
+          
+          </p>I feel like now is a good time to mention that some people prefer the Y axis to mean "up and down" within the game world, hence the terms <u>Z-up</u> and <u>Y-up</u>.</br>Neither way is inherently better, but Z-up makes more sense when talking about projection from a top-down view, which is why I used it previously. Y-up has the advantage of making more sense during the actual process of projection, since with Y-up the Y distance determines the projection of the screen Y rather than the Z distance. Semantics!</p></br>
 
+          <p>Now, let's view our top down view of our game world side by side with our brand new 3D projected version! Surely nothing can go wrong, right??</p></br>
+          
           <!--Canvas-->
           <canvas id="canvas1" class="canvasborder"
-            aria-label="Canvas with ONE poorly drawn tree at a user-specified X and Y position." role="img" width="320"
-            height="320"></canvas>
+            aria-label="Canvas showing off 3D projection and the 2D world" role="img" width="320"
+            height="224"></canvas>
 
-          <p>Did you have fun? You better have, this canvas stuff is tedious!</p></br></br></br>
+          <p>Unfortunately, this looks like a jumbled mess. We actually forgot the most important aspect of the Super Scaler effect: the SCALING! Luckily, we can simply multiply the width and height of the sprite by our scaling factor to get:</p></br>
 
-          <h2 class="text-center">Projection Basics</h2></br>
-          
-          <p>You may have noticed that I drew a line between the viewer and our lovely little tree. This line is
-            going to help us project the object onto our screen, because <u>where the line intersects with the screen is
-              the point where our object projects to!</u></p>
-
-          <img src='Pictures/projection_1.png'>
-
-          <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p></br>
-
-          <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need 'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
-
-          <img src='Pictures/projection_2.png'>
-
-          <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance between the viewer and the object and X being the x distance between the viewer and the object. And no, we're not going to need trigonometry (yet!)</br></br>For those with a keen eye, you may have noticed that there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created by the intersection between the triangle and the clipping plane:</p>
-
-          <img src='Pictures/projection_3.png'>
-
-          <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually establish a scale ratio between the two triangles that will solve the problem for us.</p>
-
-          <img src='Pictures/projection_4.png'>
-
-          <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the point right??? Well..... it's probably better to just show you: </p>
-
-          <img src='Pictures/projection_oops.png'>
-
-          <p>We were close! However, X is the distance between the object and the viewer, and if the distance is nothing then the projection point also lies at zero. We actually need to add half of the length of the screen's width to get the right result!</br></br>So the final formula comes around to: </p>
-
-          <img src='Pictures/projection_final.png'>
-
-        </br></br>
-
-          <!--Slider!-->
-          <label for="canvas2-sliderX">X position</label></br>
-          <input type="range" id="canvas2-sliderX" name="sliderX" min="32" max="288"></br>
-          <label for="canvas2-sliderY">Y position</label></br>
-          <input type="range" id="canvas2-sliderY" name="sliderY" min="32" max="192"></br>
-
+          <!--Canvas-->
           <canvas id="canvas2" class="canvasborder"
-            aria-label="Image with a sexy tree with a line showcasing perspective projection"
-            role="img" width="320" height="320"></canvas>
+            aria-label="Canvas showing off 3D projection and the 2D world with proper scaling" role="img" width="320"
+            height="224"></canvas>
 
-          <p>Whew! Nice job!</p>
-          
-          </br></br></br>
-          
-          <h2 class="text-center">Oh! Trigonometry...</h2></br>
+          <p>A much better showing! Though still, something feels a bit off. Perhaps it's the fact that occasionally, smaller objects will overlap larger ones despite being farther in the distance. Who knows!</br>According to <a href="https://segaretro.org/Sega_Hang-On_hardware">segaretro</a>, Sega's hardware was capable of z-buffering way back in 1985! If that's true, they were pretty far ahead of the curve. As for us, we'll just have to manually sort the objects by how close they are to the camera. This part isn't exactly very interesting and I didn't really find it worth covering in depth, but feel free to look at the JS code if you really wanna know how it's done.</p>
 
-          <p>Now, at this point you could be satisfied. But at this point you might ask yourself, "how do we determine how far the viewer should sit from the screen?" You could actually set it to any arbitrary point, nobody would really care. BUT, you could also use FOV (Field of View) to determine how far or near the viewer should sit! This means trigonometry YEAHHHHHHH</p>
-
-          <img src='Pictures/projection_fov_1.png'></br>
-
-          <p>More crude drawings. You love them, you really do.</br>Our goal this time is to find "dy" using our FOV angle and our screen width. The former we can set ourselves and the latter we should already know!</br>(Oh, and FOV Angle is halved because the dy line cuts the angle in half)</p>
-
-          <img src='Pictures/projection_fov_2.png'></br>
-
-          <p>Oh hey look a triangle</br>Now we know that the opposite side is half of the screen's width. We've got an angle, the length of the opposite side, and we need to know the length of the adjacent side.</br>The tangent of an angle <u>(FOV Angle / 2)</u> is equal to the length of the opposite side <u>(Screen Width / 2)</u> divided by the length of adjacent side <u>(dy)</u>, so let's use that!</p>
-
-          <img src='Pictures/projection_fov_3.png'></br>
-
-          <p>Now we're getting somewhere!</br>Finally, let's solve for dy by rearranging the equation using basic algebra. If you're lost then I suggest it's time to hit the books, dweebenheimer!</br>(It's really simple though, multiply by dy on both sides then divide by Tan(FOV/2) on both sides)</p>
-
-          <img src='Pictures/projection_fov_4.png'></br>
-
-          <p>That gives us dy = Half of Screen Width / Tan(Half of FOV). Not too bad, huh?</br>Now check it!</p>
-
-          <!--Slider!-->
-          <label for="canvas3-sliderX">X position</label></br>
-          <input type="range" id="canvas3-sliderX" name="sliderX" min="32" max="288"></br>
-          <label for="canvas3-sliderY">Y position</label></br>
-          <input type="range" id="canvas3-sliderY" name="sliderY" min="32" max="192"></br>
-          <label for="canvas3-sliderFOV">Field of View</label></br>
-          <input type="range" id="canvas3-sliderFOV" name="sliderFOV" min="60" max="120"></br>
-          
+          <!--Canvas-->
           <canvas id="canvas3" class="canvasborder"
-            aria-label="Image with a sexy tree with a line showcasing perspective projection and FOV slider"
-            role="img" width="320" height="400"></canvas>
+            aria-label="Canvas showing off 3D projection and the 2D world with proper scaling and sorting" role="img" width="320"
+            height="224"></canvas>
 
-          <p>Try playing around with those values! Note how when the FOV is narrow, the scale factor isn't quite as profound as when the FOV is very wide!</br>At this point, we now have EVERYTHING we need in order to do some SUPER SCALIN'!</p>
+          <p>Muuuuch better!! Though, it's rather BORING having the viewpoint be so static. Let's have our camera move around in a circle while panning to face the center of our scene!</br>As stated before, in order to render the scene all objects need to be moved relative to the camera's position. If we wanted to rotate the camera, all objects would need to be rotated relative to their position from the camera as well as the camera's rotation angle.</br><a href="https://academo.org/demos/rotation-about-point/">HERE</a> is an excellent reference on how rotation about a point is done, we'll use it to rotate and move our camera!</p></br>
+          <p>But enough RAMBLING, here's what it looks like!</p>
+          <!--Canvas-->
+          <canvas id="canvas4" class="canvasborder"
+            aria-label="Canvas showing off 3D projection and the 2D world with proper scaling and sorting AND rotation" role="img" width="320"
+            height="224"></canvas>
+
+          <p>Pretty slick, huh?? NOW we're putting the SUPER in SUPER SCALER!!</p>
           
         </div>
       </div>

@@ -99,43 +99,47 @@
     </aside>
 
     <!--Navigation Bar-->
-    <nav class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
-      <!--Collapse Button-->
-      <button type="button" data-bs-toggle="collapse" data-bs-target="#navbar" class="navbar-toggler"><span
-          class="navbar-toggler-icon"></span></button>
-      <!--Collapse-->
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="intro.html">What is a Super Scaler?</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="defining.html">Defining "Pseudo 3D"</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="roads.html">Making Roads</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="demo.html">Interactive Demo</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      <nav class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
+        <!--Collapse Button-->
+        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbar" class="navbar-toggler"><span
+            class="navbar-toggler-icon"></span></button>
+        <!--Collapse-->
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="intro.html">What is a Super Scaler?</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="defining.html">About "Pseudo 3D"</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="defining2.html">Screens and Windows</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="defining3.html">Making a Super Scaler</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
 
     <!--Main Page Content-->
     <main>
       <!--Parallax background-->
       <div class="parallaxBG">
-        <div class="p-4 col-lg bg-dark bg-opacity-50 text-white">
+        <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
           <h2 class="text-center">What IS a "Super Scaler?"</h2>
 
           <p>This may be fairly obvious for you, but video games didn't always look as good as they do now! Many games
             these days use very complex 3D rendering tools and technologies that developers from the 80's and 90's could
-            merely dream of using.</p></br></br>
+            merely dream of using.</p>
+
+          <img class='center' src='Pictures/tlou2.jpg'>
+        
+        </br></br>
 
           <p>Today, scenes in video games can be made up of millions of <u>polygons</u> at once. Back then however,
             <u>CG</u> rendering was still in its infancy. Often 3D games were made using <u>vector</u> wireframe
@@ -144,31 +148,42 @@
             Filled-in polygons also need to be sorted or <u>culled</u> in order to make sure that objects farther away
             don't overlap with objects closer to the screen (also a very costly task!). This made vectors excellent for
             early 3D video games, but weren't exactly very attractive to look at!
-          </p></br></br>
+          </p>
+
+          <img class='center' src='Pictures/bzone_a.png'>
+        
+        </br></br>
 
           <p>Alongside vector graphics displays were <u>raster graphics</u>, which were designed to show images using a
             grid of pixels rather than a series of lines. Games using raster displays were built with two <u>bitmap</u>
             images. One such type of these images were known as <u>sprites</u>, which were bitmap graphics that could be
             displayed independently from the <u>frame buffer</u>. This meant that they could be easily moved around
             without the need for the entire screen to refresh, and made them perfect for moving objects such as players,
-            enemies, and projectiles.</p></br></br>
+            enemies, and projectiles.</p>
+
+          <img class='center' src='Pictures/NES_Super_Mario_Bros.png'>
+
+          </br></br>
 
           <p>For a time (around the late 70's to the mid 80's) games using vector displays AND raster displays
             co-existed. The former had the advantage of being easy to scale and rotate, since vector graphics were
             literally made up of lines between points. Raster graphics had the advantage of being far more flexible and
             attractive than early vector displays, since they could render 2D images with full color.
-          <p></br></br>
+          <p>
 
-          <p>As an example, in order to draw a spaceship using an old vector display, several points would have to be
-            defined, and each of those points would have to move as the ship itself moved. Using a raster display, a
-            spacship could just be a sprite with an image of a spaceship drawn at a specific point on the screen, no
-            need to move several points around!</p></br></br>
+            <img class='center' src='Pictures/marble_a.png'>
+        
+        </br></br>
 
-          <p>By 1984, the writing was on the wall for the prominence of vector displays in gaming. Their primitive
+          <p>By 1985, the writing was on the wall for the prominence of vector displays in gaming. Their primitive
             nature compared against the more colorful and full images that could be produced by raster games of the time
             meant that they gradually faded away. But now what? This now meant that games with a convincing 3D effect
             would be harder to achieve, since full polygonal 3D wasn't quite in the cards yet! Could sprites somehow
-            fill in the void left behind by the absence of 3D vector graphics?</p></br></br>
+            fill in the void left behind by the absence of 3D vector graphics?</p>
+
+          <img class='center' src='Pictures/esb.png'>
+
+          </br></br>
 
           <p>Actually.... yeah! They kinda COULD!</p></br></br>
 
@@ -178,7 +193,11 @@
             screen could be scaled smaller! Such was the case with Sega's Turbo from 1981, possibly the earliest example
             of a game that used sprites drawn at different sizes to replicate a 3D look. Namco's Pole Position followed
             suit a year later, using sprites and <u>scanline</u> effects to draw a convincing 3D environment made up of
-            a road, other drivers, and several roadside objects such as signs and billboards.</p></br></br>
+            a road, other drivers, and several roadside objects such as signs and billboards.</p>
+
+          <img class='center' src='Pictures/poleposa.png'>
+
+          </br></br>
 
           <p>These kinds of sprite based 3D games didn't really take off in popularity until around 1985, when Yu Suzuki
             produced both Space Harrier and Hang-On for Sega. While they used the same techniques as the aformentioned
@@ -186,7 +205,11 @@
             water. Not only were they visually stunning to look at, but both games were also FAST due to the relative
             simplicity of only having to draw sprites at different sizes rather than objects made up of several
             polygons. Many other companies took notice to these new "scaler" type games and began producing their own.
-          </p></br></br>
+          </p>
+
+          <img class='center' src='Pictures/sharrier_a.png'>
+
+          </br></br>
 
           <p>And thus, a new age was born..... the <u>SUPER SCALER</u> age!!</p></br></br>
 
@@ -195,7 +218,11 @@
             due to the hardware and technology for it being far more readily available than for polygon-based 3D. Even
             with the advent of new polygonal 3D games such as Namco's Winning Run in 1988 and Atari's Hard Drivin' in
             1989, Super Scalers still had their place thanks to their speed and visual fidelity. Super Scalers would
-            continue to be used in games both in arcades and on home consoles for several more years...</p></br></br>
+            continue to be used in games both in arcades and on home consoles for several more years...</p>
+
+          <img class='center' src='Pictures/galastrm_a.png'>
+
+          </br></br>
 
           <p>...however, much like vector based games before it, Sprite Based 3D would eventually become outdated thanks
             to advancements in polygonal 3D technology. Games like Namco's Ridge Racer in 1993 and Sega's Daytona USA in
@@ -203,14 +230,22 @@
               second</u>; on par with most Super Scalers at the time! And thus, 1995 would be the last hurrah for Super
             Scaler titles in the arcades, with polygonal 3D becoming far more accessible for developers and also being
             more expected from consumers who came to arcades for graphics they couldn't get on home consoles.</p>
+          
+
+          <img class='center' src='Pictures/slipstream_a.png'>
+
           </br></br>
 
           <p>Super Scalers weren't dead though! In fact, for lower fidelity hardware such as Nintendo's Game Boy line of
             handhelds or early Java-based phones. Even today, modern developers are still creating throwbacks to these
             old types of games. Why? Perhaps it's the way that Super Scalers had to "exaggerate" 3D space in order to
             look more appealing, and seeing how a 3D world can be made up out of 2D images used in creative ways still
-            manages to impress to this day!</p></br></br>
+            manages to impress to this day!</p>
 
+          <img class='center' src='Pictures/slipstream.jpg'>
+
+          </br></br>
+          
           <p>Super Scalers may not by mainstream anymore, but they will never die out completely. Long live "SUPER
             SCALERS!!"</p></br></br></br></br></br></br>
 

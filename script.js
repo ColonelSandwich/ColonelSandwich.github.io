@@ -17,8 +17,12 @@ img.src = 'Pictures/funny_tree.png'; // Set source path
 // Grass color
 const grass = "rgba(64, 200, 64, 1)";
 
-// Trees array
+// Initialize trees
+var initTrees = false;
+
+// Trees array and sorted trees array
 var trees = [];
+var sortedTrees = [];
 
 // Tree Class
 class Tree {
@@ -26,6 +30,9 @@ class Tree {
     this.x = x;
     this.y = y;
     this.z = z;
+    this.world_x = 0;
+    this.world_y = 0;
+    this.world_z = 0;
   }
   // Set position!
   setPos(x, y, z) {
@@ -33,24 +40,86 @@ class Tree {
     this.y = y;
     this.z = z;
   }
+  // Position around camera
+  camPosition(cam){
+    // Relative positions
+    let rx = this.x-cam.getX();
+    let ry = this.y-cam.getY();
+    // Angle in radians
+    let ra = cam.getAngle() * Math.PI/180;
+    // Move around the camera
+    this.world_x = rx*Math.cos(ra) - ry*Math.sin(ra);
+    this.world_y = ry*Math.cos(ra) + rx*Math.sin(ra);
+    this.world_z = this.z-cam.getZ();
+  }
   // Draw it!
-  draw2D(ctx, img, clip) {
-    let c = 64;
-    // Clip the image so it doesn't go past the border boundary
-    //if(clip)
-      //c = Math.max(0, Math.min(64, (height-2)-(this.y-32)));
+  draw2D(ctx, img) {
     // Draw the image
-    ctx.drawImage(img, 0, 0, 64, c, this.x-32, this.y-32, 64, c);
+    ctx.drawImage(img, this.x-32, this.y-32);
+  }
+  // Draw it in 3D!
+  draw3D(ctx, img, cam, scaled){
+    // Make sure not to draw objects that are behind the camera!
+    if(this.world_y <= 0)
+      return -1;
+    // Scale Factor
+    let scale_factor = cam.getViewDist()/this.world_y;
+    // Projection point
+    let screen_x = width/2 + scale_factor * this.world_x;
+    let screen_y = height/2 + scale_factor * this.world_z;
+    // Default scale
+    let scale = 64;
+    // Rescale
+    if(scaled)
+      scale = 64*scale_factor;
+    // Draw it!!
+    ctx.drawImage(img, screen_x-scale/2, screen_y-scale/2, scale, scale);
   }
 }
 
 // Camera Class
 class Camera {
-  constructor(x, y, z, angle) {
-    this.position = new Vec3(x, y, z);
+  constructor(x, y, z, angle, FOV) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.angle = angle;
+    this.FOV = FOV;
+    this.viewDist = (width/2)/(Math.tan((this.FOV/2) * Math.PI/180));
+  }
+  setPosition(x, y, z){
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+  setAngle(angle){
     this.angle = angle;
   }
+  setFOV(FOV){
+    this.FOV = FOV;
+    this.viewDist = (width/2)/(Math.tan((this.FOV/2) * Math.PI/180));
+  }
+  getX(){
+    return this.x;
+  }
+  getY(){
+    return this.y;
+  }
+  getZ(){
+    return this.z;
+  }
+  getAngle(){
+    return this.angle;
+  }
+  getViewDist(){
+    return this.viewDist;
+  }
 }
+
+// Camera
+var myCamera = new Camera(width, -96, -64, 0, 90);
+var rotatingDot = new Camera(width, -96, -64, 0, 90);
+var rotation = 0;
 
 // Random range
 function RandomRange(min, max) {
@@ -58,20 +127,17 @@ function RandomRange(min, max) {
 }
 
 // Generate random trees
-function generateTrees(num) {
+function generateTrees(minX, minY, maxX, maxY, num) {
   for (let i = 0; i < num; i++) {
-    trees.push(new Tree(RandomRange(32, width-32), RandomRange(32, height-32), 0));
+    trees.push(new Tree(RandomRange(minX, maxX), RandomRange(minY, maxY), 0));
   }
 }
-
-// Initialize trees
-var initTrees = false;
 
 // Random trees demo
 function treesRandomDemo() {
   // Generate trees
   if(initTrees == false){
-    generateTrees(10);
+    generateTrees(32, 32, width-32, height-32, 10);
     initTrees = true;
   }
   // Now !! Draw a basic demonstration
@@ -85,8 +151,6 @@ function treesRandomDemo() {
 
 // Projection demo
 function treesProjectionDemo() {
-  // Get the canvas
-  var canvas = document.getElementById("canvas1");
   // Draw trees but you can set the position
   screenRefresh("canvas1", grass);
   drawScreen("canvas1", true, false, false);
@@ -101,6 +165,78 @@ function treesProjectionDemo() {
   drawTreePoint("canvas3");
   // Animation !!
   window.requestAnimationFrame(treesProjectionDemo);
+}
+
+// 3D Projection demo
+function trees3DProjectionDemo() {
+  // Generate trees
+  if(initTrees == false){
+    generateTrees(0, 0, width*2, height*2, 20);
+    initTrees = true;
+  }
+  // Draw trees but they're THREE DEE
+  // They're not scaled or sorted, whoops!
+  drawGroundSky("canvas1", grass, "aqua");
+  drawTrees3D("canvas1", myCamera, false, false);
+  // Draw trees but they're THREE DEE
+  // They're scaled, but not sorted. We'll get there!
+  drawGroundSky("canvas2", grass, "aqua");
+  drawTrees3D("canvas2", myCamera, true, false);
+  // Draw trees but they're THREE DEE
+  // They're scaled and SORTED. I'm just that damn good!
+  drawGroundSky("canvas3", grass, "aqua");
+  drawTrees3D("canvas3", myCamera, true, true);
+  // Camera rotate!
+  let a = rotation * Math.PI/180;
+  rotatingDot.setPosition(width+Math.cos(a)*320, height+Math.sin(a)*320, -32);
+  rotatingDot.setAngle(270-rotation);
+  rotation++;
+  // Draw trees but they're THREE DEE
+  // Now they rotate !!
+  drawGroundSky("canvas4", grass, "aqua");
+  drawTrees3D("canvas4", rotatingDot, true, true);
+  // Animation !!
+  window.requestAnimationFrame(trees3DProjectionDemo);
+}
+
+// Ironically we have to screen refresh, despite sprites being made to avoid that...
+function screenRefresh(canvasId, color) {
+  
+  // Get the canvas
+  let canvas = document.getElementById(canvasId);
+
+  // Make sure the canvas actually exists!
+  if (canvas.getContext) {
+    
+    // use getContext to use the canvas for drawing
+    var ctx = canvas.getContext("2d");
+
+    // Fill!
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, height);
+  }
+}
+
+// Ironically we have to screen refresh, despite sprites being made to avoid that...
+function drawGroundSky(canvasId, groundColor, skyColor) {
+  
+  // Get the canvas
+  let canvas = document.getElementById(canvasId);
+
+  // Make sure the canvas actually exists!
+  if (canvas.getContext) {
+    
+    // use getContext to use the canvas for drawing
+    var ctx = canvas.getContext("2d");
+
+    // Fill!
+    ctx.fillStyle = skyColor;
+    ctx.fillRect(0, 0, width, height/2);
+    
+    // Fill!
+    ctx.fillStyle = groundColor;
+    ctx.fillRect(0, height/2, width, height);
+  }
 }
 
 // Draw the random trees
@@ -127,21 +263,45 @@ function drawTreesRandom(canvasId) {
   }
 }
 
-// Ironically we have to screen refresh, despite sprites being made to avoid that...
-function screenRefresh(canvasId, color) {
+// Draw the tree at a specific point
+function drawTrees3D(canvasId, cam, scaled, sorted) {
   
   // Get the canvas
   let canvas = document.getElementById(canvasId);
 
   // Make sure the canvas actually exists!
   if (canvas.getContext) {
-    
+
     // use getContext to use the canvas for drawing
     var ctx = canvas.getContext("2d");
 
-    // Fill!
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, width, height);
+    // Move trees
+    for(let tree of trees) {
+      tree.camPosition(cam);
+    }
+
+    // Draw sorted
+    if(sorted)
+    {
+      // Copy array
+      sortedTrees = [...trees];
+  
+      // Sort
+      sortedTrees.sort((a, b) => b.world_y - a.world_y);
+      
+      // Draw trees
+      for(let tree of sortedTrees) {
+        tree.draw3D(ctx, img, cam, scaled);
+      }
+    }
+    // Draw unsorted
+    else
+    {
+      // Draw trees
+      for(let tree of trees) {
+        tree.draw3D(ctx, img, cam, scaled);
+      }
+    }
   }
 }
 

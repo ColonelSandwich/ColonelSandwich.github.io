@@ -15,11 +15,11 @@
   <!--Parallax background-->
   <div class="parallaxBG">
     <!--Header-->
-    <header class="row">
-      <div class="p-4 col-lg bg-primary text-white">
-        <h1 class="text-center">Michael's Pseudo 3D Page</h1>
-      </div>
-    </header>
+      <header class="row">
+        <div class="p-4 col-lg bg-primary text-white">
+          <h1 class="text-center">Michael's Super Scaler "Pseudo 3D" Page</h1>
+        </div>
+      </header>
 
     <!--Aside Carousel-->
     <aside>
@@ -165,21 +165,21 @@
             going to help us project the object onto our screen, because <u>where the line intersects with the screen is
               the point where our object projects to!</u></p>
 
-          <img src='Pictures/projection_1.png'>
+          <img class='center' src='Pictures/projection_1.png'>
 
           <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p></br>
 
           <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need 'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
 
-          <img src='Pictures/projection_2.png'>
+          <img class='center' src='Pictures/projection_2.png'>
 
           <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance between the viewer and the object and X being the x distance between the viewer and the object. And no, we're not going to need trigonometry (yet!)</br></br>For those with a keen eye, you may have noticed that there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created by the intersection between the triangle and the clipping plane:</p>
 
-          <img src='Pictures/projection_3.png'>
+          <img class='center' src='Pictures/projection_3.png'>
 
           <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually establish a scale ratio between the two triangles that will solve the problem for us.</p>
 
-          <img src='Pictures/projection_4.png'>
+          <img class='center' src='Pictures/projection_4.png'>
 
           <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the point right??? Well..... it's probably better to just show you: </p>
 
