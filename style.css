@@ -39,8 +39,6 @@ html, body {
 }
 
 /* 320 x 224, arcade resolution! */
-canvas#default{
-  width: 320px;
-  height: 224px;
+.canvasborder{
   border: 1px solid #000000
 }

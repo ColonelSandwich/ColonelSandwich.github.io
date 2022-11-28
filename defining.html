@@ -11,7 +11,7 @@
   <script src="script.js"></script>
 </head>
 
-<body onload="drawTreesRandom()">
+<body>
   <!--Parallax background-->
   <div class="parallaxBG">
     <!--Header-->
@@ -125,7 +125,6 @@
       </div>
     </nav>
 
-
     <!--Main Page Content-->
     <main>
       <!--Parallax background-->
@@ -148,7 +147,19 @@
           <p>To start with, imagine we have a world of sorts, inside of the game. Objects inside the game world have x,
             y, and z coordinates (but for now we'll only worry about x and y!)</p>
 
-          <canvas id="default" aria-label="Now it is TEXT TIME!" role="img"></canvas>
+          <canvas id="canvas1" class="canvasborder" aria-label="Image with several poorly drawn trees" role="img"
+            width="320" height="224">></canvas>
+
+          <p>Here's a basic world with a couple of trees in it, each with their own X and Y coordinates! (I apologize
+            for the crudeness of the tree drawing, except I DON'T apologize because you can live with it)</p></br>
+
+          <p>Now, the game world is vast and expansive beyond our wildest imagination, but we, the player, need some way
+            to be able to see into this incredible world! Imagine, if you will, that a window of some sort could allow
+            us to peer into this game world and see the majesty of the field of poorly drawn trees...</p>
+
+          <canvas id="canvas2" class="canvasborder"
+            aria-label="Image with several poorly drawn trees and a window showing the player peering into the game world."
+            role="img" width="320" height="320">></canvas>
 
         </div>
       </div>
