@@ -15,11 +15,11 @@
   <!--Parallax background-->
   <div class="parallaxBG">
     <!--Header-->
-      <header class="row">
-        <div class="p-4 col-lg bg-primary text-white">
-          <h1 class="text-center">Michael's Super Scaler "Pseudo 3D" Page</h1>
-        </div>
-      </header>
+    <header class="row">
+      <div class="p-4 col-lg bg-primary text-white">
+        <h1 class="text-center">Michael's Super Scaler "Pseudo 3D" Page</h1>
+      </div>
+    </header>
 
     <!--Aside Carousel-->
     <aside>
@@ -99,31 +99,31 @@
     </aside>
 
     <!--Navigation Bar-->
-      <nav class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
-        <!--Collapse Button-->
-        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbar" class="navbar-toggler"><span
-            class="navbar-toggler-icon"></span></button>
-        <!--Collapse-->
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="intro.html">What is a Super Scaler?</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="defining.html">About "Pseudo 3D"</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="defining2.html">Screens and Windows</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="defining3.html">Making a Super Scaler</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <nav class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
+      <!--Collapse Button-->
+      <button type="button" data-bs-toggle="collapse" data-bs-target="#navbar" class="navbar-toggler"><span
+          class="navbar-toggler-icon"></span></button>
+      <!--Collapse-->
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="intro.html">What is a Super Scaler?</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="defining.html">About "Pseudo 3D"</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="defining2.html">Screens and Windows</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="defining3.html">Making a Super Scaler</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <!--Main Page Content-->
     <main>
@@ -160,36 +160,48 @@
           <p>Did you have fun? You better have, this canvas stuff is tedious!</p></br></br></br>
 
           <h2 class="text-center">Projection Basics</h2></br>
-          
+
           <p>You may have noticed that I drew a line between the viewer and our lovely little tree. This line is
             going to help us project the object onto our screen, because <u>where the line intersects with the screen is
               the point where our object projects to!</u></p>
 
           <img class='center' src='Pictures/projection_1.png'>
 
-          <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p></br>
+          <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p>
+          </br>
 
-          <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need 'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
+          <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need
+            'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
 
           <img class='center' src='Pictures/projection_2.png'>
 
-          <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance between the viewer and the object and X being the x distance between the viewer and the object. And no, we're not going to need trigonometry (yet!)</br></br>For those with a keen eye, you may have noticed that there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created by the intersection between the triangle and the clipping plane:</p>
+          <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance
+            between the viewer and the object and X being the x distance between the viewer and the object. And no,
+            we're not going to need trigonometry (yet!)</br></br>For those with a keen eye, you may have noticed that
+            there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created
+            by the intersection between the triangle and the clipping plane:</p>
 
           <img class='center' src='Pictures/projection_3.png'>
 
-          <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually establish a scale ratio between the two triangles that will solve the problem for us.</p>
+          <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller
+            triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually
+            establish a scale ratio between the two triangles that will solve the problem for us.</p>
 
           <img class='center' src='Pictures/projection_4.png'>
 
-          <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the point right??? Well..... it's probably better to just show you: </p>
+          <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled
+            "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the
+            point right??? Well..... it's probably better to just show you: </p>
 
-          <img src='Pictures/projection_oops.png'>
+          <img class='center' src='Pictures/projection_oops.png'>
 
-          <p>We were close! However, X is the distance between the object and the viewer, and if the distance is nothing then the projection point also lies at zero. We actually need to add half of the length of the screen's width to get the right result!</br></br>So the final formula comes around to: </p>
+          <p>We were close! However, X is the distance between the object and the viewer, and if the distance is nothing
+            then the projection point also lies at zero. We actually need to add half of the length of the screen's
+            width to get the right result!</br></br>So the final formula comes around to: </p>
 
-          <img src='Pictures/projection_final.png'>
+          <img class='center' src='Pictures/projection_final.png'>
 
-        </br></br>
+          </br></br>
 
           <!--Slider!-->
           <label for="canvas2-sliderX">X position</label></br>
@@ -198,30 +210,40 @@
           <input type="range" id="canvas2-sliderY" name="sliderY" min="32" max="192"></br>
 
           <canvas id="canvas2" class="canvasborder"
-            aria-label="Image with a sexy tree with a line showcasing perspective projection"
-            role="img" width="320" height="320"></canvas>
+            aria-label="Image with a sexy tree with a line showcasing perspective projection" role="img" width="320"
+            height="320"></canvas>
 
           <p>Whew! Nice job!</p>
-          
+
           </br></br></br>
-          
+
           <h2 class="text-center">Oh! Trigonometry...</h2></br>
 
-          <p>Now, at this point you could be satisfied. But at this point you might ask yourself, "how do we determine how far the viewer should sit from the screen?" You could actually set it to any arbitrary point, nobody would really care. BUT, you could also use FOV (Field of View) to determine how far or near the viewer should sit! This means trigonometry YEAHHHHHHH</p>
+          <p>Now, at this point you could be satisfied. But at this point you might ask yourself, "how do we determine
+            how far the viewer should sit from the screen?" You could actually set it to any arbitrary point, nobody
+            would really care. BUT, you could also use FOV (Field of View) to determine how far or near the viewer
+            should sit! This means trigonometry YEAHHHHHHH</p>
 
-          <img src='Pictures/projection_fov_1.png'></br>
+          <img class='center' src='Pictures/projection_fov_1.png'></br>
 
-          <p>More crude drawings. You love them, you really do.</br>Our goal this time is to find "dy" using our FOV angle and our screen width. The former we can set ourselves and the latter we should already know!</br>(Oh, and FOV Angle is halved because the dy line cuts the angle in half)</p>
+          <p>More crude drawings. You love them, you really do.</br>Our goal this time is to find "dy" using our FOV
+            angle and our screen width. The former we can set ourselves and the latter we should already know!</br>(Oh,
+            and FOV Angle is halved because the dy line cuts the angle in half)</p>
 
-          <img src='Pictures/projection_fov_2.png'></br>
+          <img class='center' src='Pictures/projection_fov_2.png'></br>
 
-          <p>Oh hey look a triangle</br>Now we know that the opposite side is half of the screen's width. We've got an angle, the length of the opposite side, and we need to know the length of the adjacent side.</br>The tangent of an angle <u>(FOV Angle / 2)</u> is equal to the length of the opposite side <u>(Screen Width / 2)</u> divided by the length of adjacent side <u>(dy)</u>, so let's use that!</p>
+          <p>Oh hey look a triangle</br>Now we know that the opposite side is half of the screen's width. We've got an
+            angle, the length of the opposite side, and we need to know the length of the adjacent side.</br>The tangent
+            of an angle <u>(FOV Angle / 2)</u> is equal to the length of the opposite side <u>(Screen Width / 2)</u>
+            divided by the length of adjacent side <u>(dy)</u>, so let's use that!</p>
 
-          <img src='Pictures/projection_fov_3.png'></br>
+          <img class='center' src='Pictures/projection_fov_3.png'></br>
 
-          <p>Now we're getting somewhere!</br>Finally, let's solve for dy by rearranging the equation using basic algebra. If you're lost then I suggest it's time to hit the books, dweebenheimer!</br>(It's really simple though, multiply by dy on both sides then divide by Tan(FOV/2) on both sides)</p>
+          <p>Now we're getting somewhere!</br>Finally, let's solve for dy by rearranging the equation using basic
+            algebra. If you're lost then I suggest it's time to hit the books, dweebenheimer!</br>(It's really simple
+            though, multiply by dy on both sides then divide by Tan(FOV/2) on both sides)</p>
 
-          <img src='Pictures/projection_fov_4.png'></br>
+          <img class='center' src='Pictures/projection_fov_4.png'></br>
 
           <p>That gives us dy = Half of Screen Width / Tan(Half of FOV). Not too bad, huh?</br>Now check it!</p>
 
@@ -232,13 +254,15 @@
           <input type="range" id="canvas3-sliderY" name="sliderY" min="32" max="192"></br>
           <label for="canvas3-sliderFOV">Field of View</label></br>
           <input type="range" id="canvas3-sliderFOV" name="sliderFOV" min="60" max="120"></br>
-          
-          <canvas id="canvas3" class="canvasborder"
-            aria-label="Image with a sexy tree with a line showcasing perspective projection and FOV slider"
-            role="img" width="320" height="400"></canvas>
 
-          <p>Try playing around with those values! Note how when the FOV is narrow, the scale factor isn't quite as profound as when the FOV is very wide!</br>At this point, we now have EVERYTHING we need in order to do some SUPER SCALIN'!</p>
-          
+          <canvas id="canvas3" class="canvasborder"
+            aria-label="Image with a sexy tree with a line showcasing perspective projection and FOV slider" role="img"
+            width="320" height="400"></canvas>
+
+          <p>Try playing around with those values! Note how when the FOV is narrow, the scale factor isn't quite as
+            profound as when the FOV is very wide!</br>At this point, we now have EVERYTHING we need in order to do some
+            SUPER SCALIN'!</p>
+
         </div>
       </div>
     </main>

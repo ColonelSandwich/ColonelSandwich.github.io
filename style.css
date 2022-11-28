@@ -1,6 +1,18 @@
 html, body {
   height: 100%;
   width: 100%;
+  font-family: Geneva, sans-serif;
+  font-size: 1.1em;
+}
+
+.imagetext{
+  text-align: center;
+  font-family: Calibri;
+  font-size: 0.9em;
+}
+
+.italic{
+  font-style: italic;
 }
 
 .parallaxBG {
@@ -48,3 +60,4 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
+
