@@ -64,20 +64,25 @@ function generateTrees(num) {
   }
 }
 
-// Load it up!!
-window.onload = main;
-
-// Main function
-function main() {
+// Random trees demo
+function treesRandomDemo() {
   // Generate trees
   generateTrees(10);
-  // Draw trees but you can set the position
-  drawTreePoint();
   // Now !! Draw a basic demonstration
   drawTreesRandom("canvas1");
   // Draw trees but ALSO draw a window
   drawTreesRandom("canvas2");
-  drawWindow("canvas2");
+  drawScreen("canvas2");
+}
+
+// Projection demo
+function treesProjectionDemo() {
+  // Draw trees but you can set the position
+  drawTreePoint("canvas1");
+  // Draw trees but you can set the position AND the projection point is shown.
+  drawTreePoint("canvas2");
+  // Animation !!
+  window.requestAnimationFrame(treesProjectionDemo);
 }
 
 // Draw the random trees
@@ -105,17 +110,17 @@ function drawTreesRandom(canvasId) {
 }
 
 // Draw the tree at a specific point
-function drawTreePoint() {
+function drawTreePoint(canvasId) {
 
   // Get x and y
-  const x = document.getElementById("sliderX").value;
-  const y = document.getElementById("sliderY").value;
+  const x = document.getElementById(canvasId+"-sliderX").value;
+  const y = document.getElementById(canvasId+"-sliderY").value;
   
   // My own tree!
   let myTree = new Tree(x, y, 0);
   
   // Get the canvas
-  let canvas = document.getElementById("canvas3");
+  let canvas = document.getElementById(canvasId);
 
   // Make sure the canvas actually exists!
   if (canvas.getContext) {
@@ -137,12 +142,10 @@ function drawTreePoint() {
     // Draw all trees
     myTree.draw2D(ctx, img, true);
   }
-
-  window.requestAnimationFrame(drawTreePoint);
 }
 
 // Window visual
-function drawWindow(canvasId) {
+function drawScreen(canvasId) {
   
   // Get the canvas
   let canvas = document.getElementById(canvasId);

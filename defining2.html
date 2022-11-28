@@ -11,7 +11,7 @@
   <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="treesProjectionDemo()">
   <!--Parallax background-->
   <div class="parallaxBG">
     <!--Header-->
@@ -129,13 +129,13 @@
     <main>
       <!--Parallax background-->
       <div class="parallaxBG">
-        <div class="p-4 col-lg bg-dark bg-opacity-50 text-white">
+        <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
           <h2 class="text-center">Defining Perspective Projection</h2></br>
 
           <p>Let's go back to our example from the previous page. Our viewer or player sits outside of the world of
             trees we've created, and they need to look through a window in order to see it. This window, however, is not
             any ordinary window. It basically takes what can be seen on the other side of the window and essentially
-            "flattens" it.</p></br>
+            "flattens" it (this window is formally known as a "projection plane")</p></br>
 
           <p>Remember, the screen you're viewing this on is only two-dimensional! In order to render a 3D scene, your
             device has to take this 3D scene and "flatten" it to a 2D image on your screen. The same applies to our
@@ -147,20 +147,60 @@
             you can change the position of the tree in the scene. Give it a whirl~!</p>
 
           <!--Slider!-->
-          <label for="sliderX">X position</label></br>
-          <input type="range" id="sliderX" name="sliderX" min="32" max="288"></br>
-          <label for="sliderY">Y position</label></br>
-          <input type="range" id="sliderY" name="sliderY" min="32" max="192"></br>
+          <label for="canvas1-sliderX">X position</label></br>
+          <input type="range" id="canvas1-sliderX" name="sliderX" min="32" max="288"></br>
+          <label for="canvas1-sliderY">Y position</label></br>
+          <input type="range" id="canvas1-sliderY" name="sliderY" min="32" max="192"></br>
 
           <!--Canvas-->
-          <canvas id="canvas3" class="canvasborder"
+          <canvas id="canvas1" class="canvasborder"
             aria-label="Canvas with ONE poorly drawn tree at a user-specified X and Y position." role="img" width="320"
-            height="224"></canvas>
+            height="320"></canvas>
 
-          <p>Did you have fun? You better have, this canvas stuff is tedious!</p></br><br>
+          <p>Did you have fun? You better have, this canvas stuff is tedious!</p></br>
 
-          <p></p>
+          <h3 class="text-center">Projection Basics</h3></br>
+          
+          <p>You may have noticed that I drew a line between the viewer and our lovely little tree. This line is
+            going to help us project the object onto our screen, because <u>where the line intersects with the screen is
+              the point where our object projects to!</u></p>
 
+          <img src='Pictures/projection_1.png'>
+
+          <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p></br></br>
+
+          <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need 'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
+
+          <img src='Pictures/projection_2.png'>
+
+          <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance between the viewer and the object and X being the x distance between the viewer and the object. And no, we're not going to need trigonometry (yet!)</br></br>For those with a keen eye, you may have noticed that there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created by the intersection between the triangle and the clipping plane:</p>
+
+          <img src='Pictures/projection_3.png'>
+
+          <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually establish a scale ratio between the two triangles that will solve the problem for us.</p>
+
+          <img src='Pictures/projection_4.png'>
+
+          <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the point right??? Well..... it's probably better to just show you: </p>
+
+          <img src='Pictures/projection_oops.png'>
+
+          <p>We were close! However, X is the distance between the object and the viewer, and if the distance is nothing then the projection point also lies at zero. We actually need to add half of the length of the screen's width to get the right result!</br></br>So the final formula comes around to: </p>
+
+          <img src='Pictures/projection_final.png'>
+
+        </br></br>
+
+          <!--Slider!-->
+          <label for="canvas2-sliderX">X position</label></br>
+          <input type="range" id="canvas2-sliderX" name="sliderX" min="32" max="288"></br>
+          <label for="canvas2-sliderY">Y position</label></br>
+          <input type="range" id="canvas2-sliderY" name="sliderY" min="32" max="192"></br>
+
+          <canvas id="canvas2" class="canvasborder"
+            aria-label="Image with a sexy tree with a line showcasing perspective projection"
+            role="img" width="320" height="320"></canvas>
+          
         </div>
       </div>
     </main>
