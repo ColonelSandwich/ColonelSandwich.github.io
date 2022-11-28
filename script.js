@@ -64,23 +64,41 @@ function generateTrees(num) {
   }
 }
 
+// Initialize trees
+var initTrees = false;
+
 // Random trees demo
 function treesRandomDemo() {
   // Generate trees
-  generateTrees(10);
+  if(initTrees == false){
+    generateTrees(10);
+    initTrees = true;
+  }
   // Now !! Draw a basic demonstration
   drawTreesRandom("canvas1");
   // Draw trees but ALSO draw a window
   drawTreesRandom("canvas2");
-  drawScreen("canvas2");
+  drawScreen("canvas2", false, false, false);
+  // Animation !!
+  window.requestAnimationFrame(treesRandomDemo);
 }
 
 // Projection demo
 function treesProjectionDemo() {
+  // Get the canvas
+  var canvas = document.getElementById("canvas1");
   // Draw trees but you can set the position
+  screenRefresh("canvas1", grass);
+  drawScreen("canvas1", true, false, false);
   drawTreePoint("canvas1");
   // Draw trees but you can set the position AND the projection point is shown.
+  screenRefresh("canvas2", grass);
+  drawScreen("canvas2", true, true, false);
   drawTreePoint("canvas2");
+  // Draw trees but you can set the position AND the projection point is shown, along with an FOV slider
+  screenRefresh("canvas3", grass);
+  drawScreen("canvas3", true, true, true);
+  drawTreePoint("canvas3");
   // Animation !!
   window.requestAnimationFrame(treesProjectionDemo);
 }
@@ -109,6 +127,24 @@ function drawTreesRandom(canvasId) {
   }
 }
 
+// Ironically we have to screen refresh, despite sprites being made to avoid that...
+function screenRefresh(canvasId, color) {
+  
+  // Get the canvas
+  let canvas = document.getElementById(canvasId);
+
+  // Make sure the canvas actually exists!
+  if (canvas.getContext) {
+    
+    // use getContext to use the canvas for drawing
+    var ctx = canvas.getContext("2d");
+
+    // Fill!
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, height);
+  }
+}
+
 // Draw the tree at a specific point
 function drawTreePoint(canvasId) {
 
@@ -128,12 +164,8 @@ function drawTreePoint(canvasId) {
     // use getContext to use the canvas for drawing
     var ctx = canvas.getContext("2d");
 
-    // Ironically we have to screen refresh
-    ctx.fillStyle = grass;
-    ctx.fillRect(0, 0, width, height);
-
     ctx.fillStyle = "white";
-    ctx.font = "12px Arial";
+    ctx.font = "14px Arial";
     ctx.fillText("x : " + x + ", y : " + y, 10, 10);
 
     // Positional
@@ -145,13 +177,27 @@ function drawTreePoint(canvasId) {
 }
 
 // Window visual
-function drawScreen(canvasId) {
+function drawScreen(canvasId, drawLine, drawProjection, trig) {
   
   // Get the canvas
   let canvas = document.getElementById(canvasId);
 
   // Window width
   let windowWidth = 160;
+
+  // Our position
+  let x = width/2;
+  let y = 280;
+
+  // If we can use trig!
+  if(trig){
+    // FOV
+    var FOV = document.getElementById(canvasId+"-sliderFOV").value;
+    // dy
+    let dy = (windowWidth/2)/(Math.tan((FOV/2) * Math.PI/180));
+    // Y pos
+    y = height+dy;
+  }
 
   // Make sure the canvas actually exists!
   if (canvas.getContext) {
@@ -162,12 +208,60 @@ function drawScreen(canvasId) {
     // Ironically we have to screen refresh
     ctx.fillStyle = "white";
     ctx.fillRect(0, height, width, 480);
-    
-    // Ironically we have to screen refresh
-    ctx.strokeStyle = "black";
+
+    // Line Width
     ctx.lineWidth = 4;
     
+    // Draw FOV
+    if(trig){
+      // Value
+      ctx.fillStyle = "white";
+      ctx.font = "14px Arial";
+      ctx.fillText("FOV : " + FOV, 10, 26);
+      // dy
+      ctx.strokeStyle = "red";
+      ctx.moveTo(x, y);
+      ctx.lineTo(width/2, height);
+      ctx.closePath();
+      ctx.stroke();
+      // FOV line
+      ctx.strokeStyle = "lightgray";
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(width/2-windowWidth/2, height);
+      ctx.moveTo(x, y);
+      ctx.lineTo(width/2+windowWidth/2, height);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    
+    // Draw the line representing the projection plane or window
+    ctx.strokeStyle = "aqua";
+
     // Stroked triangle
+    ctx.beginPath();
+    ctx.moveTo(width/2-windowWidth/2, height);
+    ctx.lineTo(width/2+windowWidth/2, height);
+    ctx.closePath();
+    ctx.stroke();
+
+    // Line stuffs
+    ctx.strokeStyle = "black";
+    
+    // Draw a line
+    if(drawLine){
+      // Get x and y
+      var line_x = document.getElementById(canvasId+"-sliderX").value;
+      var line_y = document.getElementById(canvasId+"-sliderY").value;
+      // Draw line
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(line_x, line_y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    
+    // Edges of screen where the window isn't present
     ctx.beginPath();
     ctx.moveTo(0, height);
     ctx.lineTo(width/2-windowWidth/2, height);
@@ -176,22 +270,29 @@ function drawScreen(canvasId) {
     ctx.closePath();
     ctx.stroke();
 
+    // Projection point
+    if(drawProjection){
+      let scale_ratio = (y-height)/(y-line_y);
+      let dx = scale_ratio * (line_x-x);
+      let point = width/2 + dx;
+      // Draw point!
+      ctx.fillStyle = "red";
+      ctx.beginPath();
+      ctx.arc(point, height, 4, 0, Math.PI * 2, false);
+      ctx.fill();
+    }
+
     // Draw us!
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
     ctx.beginPath();
-    ctx.arc(width/2, 280, 16, 0, Math.PI * 2, false);
+    ctx.arc(x, y, 16, 0, Math.PI * 2, false);
     ctx.stroke();
 
-    // Ironically we have to screen refresh
-    ctx.strokeStyle = "aqua";
-    ctx.lineWidth = 4;
-    
-    // Stroked triangle
+    // Inside line
+    ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.moveTo(width/2-windowWidth/2, height);
-    ctx.lineTo(width/2+windowWidth/2, height);
-    ctx.closePath();
-    ctx.stroke();
+    ctx.arc(x, y, 4, 0, Math.PI * 2, false);
+    ctx.fill();
 
   }
 }
