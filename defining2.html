@@ -130,46 +130,36 @@
       <!--Parallax background-->
       <div class="parallaxBG">
         <div class="p-4 col-lg bg-dark bg-opacity-50 text-white">
-          <h2 class="text-center">On the topic of "Pseudo 3D"</h2></br>
+          <h2 class="text-center">Defining Perspective Projection</h2></br>
 
-          <p>While discussing sprite based 3D and Super Scalers, one is bound to come across the term "Pseudo 3D." I'm
-            not about to get into specifics of why I think it's a silly term because we'd likely be here all day, but
-            generally I think "Pseudo 3D" best applies to faking real 3D calculations behind smoke and mirrors. Some
-            games fake these calculations entirely while some other may only fake it for things such as curves in roads
-            or a scrolling floor.</p></br></br>
+          <p>Let's go back to our example from the previous page. Our viewer or player sits outside of the world of
+            trees we've created, and they need to look through a window in order to see it. This window, however, is not
+            any ordinary window. It basically takes what can be seen on the other side of the window and essentially
+            "flattens" it.</p></br>
 
-          <p>Some people however, use it to describe sprite based 3D in its entirety, which isn't actually always true!
-            So let's define what the process of real 3D perspective projection calculations are and aren't, and maybe go
-            over some examples in other games while we're at it!</p></br></br>
+          <p>Remember, the screen you're viewing this on is only two-dimensional! In order to render a 3D scene, your
+            device has to take this 3D scene and "flatten" it to a 2D image on your screen. The same applies to our
+            example, where our 2D game world of terrible trees needs to be "flattened" (or more accurately, projected!)
+            onto the 1D screen represented by our blue line.</p></br></br>
 
-          <h3 class="text-center">Perspective Projection: A Window into the Game's World!</h3></br>
+          <p>So let's figure this out! First, let's simplify this screen to just one tree. If we can figure out how to
+            project one tree then we can absolutely project all of them! I've also decided to make it interactive, so
+            you can change the position of the tree in the scene. Give it a whirl~!</p>
 
-          <p>To start with, imagine we have a world of sorts, inside of the game. Objects inside the game world have x,
-            y, and z coordinates (but for now we'll only worry about x and y)</p>
+          <!--Slider!-->
+          <label for="sliderX">X position</label></br>
+          <input type="range" id="sliderX" name="sliderX" min="32" max="288"></br>
+          <label for="sliderY">Y position</label></br>
+          <input type="range" id="sliderY" name="sliderY" min="32" max="192"></br>
 
-          <canvas id="canvas1" class="canvasborder" aria-label="Image with several poorly drawn trees" role="img"
-            width="320" height="224">></canvas>
+          <!--Canvas-->
+          <canvas id="canvas3" class="canvasborder"
+            aria-label="Canvas with ONE poorly drawn tree at a user-specified X and Y position." role="img" width="320"
+            height="224"></canvas>
 
-          <p>Here's a basic world with a couple of trees in it, each with their own X and Y coordinates! (I apologize
-            for the crudeness of the tree drawing, except I DON'T apologize because you can live with it)</p></br>
+          <p>Did you have fun? You better have, this canvas stuff is tedious!</p></br><br>
 
-          <p>Now, the game world is vast and expansive beyond our wildest imagination, but we, the player, need some way
-            to be able to see into this incredible world! Imagine, if you will, that a window of some sort could allow
-            us to peer into this game world and see the majesty of the field of poorly drawn trees...</p></br>
-
-          <canvas id="canvas2" class="canvasborder"
-            aria-label="Image with several poorly drawn trees and a window showing the player peering into the game world."
-            role="img" width="320" height="320">></canvas>
-
-          <p>Aha! Now what do we have here?</p></br>
-
-          <p>At the bottom of the screen, there is a new area with a circle in front of a
-            light blue line. This circle represents "us" and the light blue line represents a "view window" of sorts
-            that will allow us to see into the game's world! On the next page, I will explain how we take these points
-            in the game's world and project them onto our view window to make a convincing 3D effect out of these
-            HORRIBLE sprites. Let's go!!</p></br></br>
-
-          <p>ELABORATION ON NEXT SIDE!!</p>
+          <p></p>
 
         </div>
       </div>

@@ -7,20 +7,18 @@ function addLastUpdate() {
 }
 
 // Default view resolution
-var width = 320;
-var height = 224;
+const width = 320;
+const height = 224;
+
+// Grab the tree image
+const img = new Image();             // Create new img element
+img.src = 'Pictures/funny_tree.png'; // Set source path
+
+// Grass color
+const grass = "rgba(64, 200, 64, 1)";
 
 // Trees array
 var trees = [];
-
-// Vector3
-class Vec3 {
-  constructor(x, y, z) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
-}
 
 // Tree Class
 class Tree {
@@ -29,12 +27,18 @@ class Tree {
     this.y = y;
     this.z = z;
   }
+  // Set position!
+  setPos(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
   // Draw it!
   draw2D(ctx, img, clip) {
     let c = 64;
     // Clip the image so it doesn't go past the border boundary
-    if(clip)
-      c = Math.max(0, Math.min(64, (height-2)-(this.y-32)));
+    //if(clip)
+      //c = Math.max(0, Math.min(64, (height-2)-(this.y-32)));
     // Draw the image
     ctx.drawImage(img, 0, 0, 64, c, this.x-32, this.y-32, 64, c);
   }
@@ -50,13 +54,13 @@ class Camera {
 
 // Random range
 function RandomRange(min, max) {
-  return Math.floor(Math.random() * max) + min;
+  return Math.floor(Math.random() * (max-min))+min;
 }
 
 // Generate random trees
-function generateTrees(range_x, range_y, num) {
+function generateTrees(num) {
   for (let i = 0; i < num; i++) {
-    trees.push(new Tree(RandomRange(0, range_x), RandomRange(0, range_y), 0));
+    trees.push(new Tree(RandomRange(32, width-32), RandomRange(32, height-32), 0));
   }
 }
 
@@ -66,7 +70,9 @@ window.onload = main;
 // Main function
 function main() {
   // Generate trees
-  generateTrees(320, 224, 10);
+  generateTrees(10);
+  // Draw trees but you can set the position
+  drawTreePoint();
   // Now !! Draw a basic demonstration
   drawTreesRandom("canvas1");
   // Draw trees but ALSO draw a window
@@ -87,22 +93,52 @@ function drawTreesRandom(canvasId) {
     var ctx = canvas.getContext("2d");
 
     // Ironically we have to screen refresh
-    ctx.fillStyle = "rgba(64, 200, 64, 1)";
+    ctx.fillStyle = grass;
     ctx.fillRect(0, 0, width, height);
 
-    // Grab the tree image
-    const img = new Image();   // Create new img element
-    img.src = 'Pictures/funny_tree.png'; // Set source path
-
-    // Draw the trees
-    img.addEventListener('load', () => {
-      // Draw all trees
-      for(let tree of trees) {
-        tree.draw2D(ctx, img, true);
-      }
-    }, false);
+    // Draw all trees
+    for(let tree of trees) {
+      tree.draw2D(ctx, img, true);
+    }
 
   }
+}
+
+// Draw the tree at a specific point
+function drawTreePoint() {
+
+  // Get x and y
+  const x = document.getElementById("sliderX").value;
+  const y = document.getElementById("sliderY").value;
+  
+  // My own tree!
+  let myTree = new Tree(x, y, 0);
+  
+  // Get the canvas
+  let canvas = document.getElementById("canvas3");
+
+  // Make sure the canvas actually exists!
+  if (canvas.getContext) {
+
+    // use getContext to use the canvas for drawing
+    var ctx = canvas.getContext("2d");
+
+    // Ironically we have to screen refresh
+    ctx.fillStyle = grass;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = "white";
+    ctx.font = "12px Arial";
+    ctx.fillText("x : " + x + ", y : " + y, 10, 10);
+
+    // Positional
+    myTree.setPos(x, y, 0);
+    
+    // Draw all trees
+    myTree.draw2D(ctx, img, true);
+  }
+
+  window.requestAnimationFrame(drawTreePoint);
 }
 
 // Window visual
