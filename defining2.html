@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="style.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </head>
 
@@ -152,7 +152,7 @@
             going to help us project the object onto our screen, because <u>where the line intersects with the screen is
               the point where our object projects to!</u></p>
 
-          <img class='center' src='Pictures/projection_1.png'>
+          <img class='center' alt="Picture describing the point we need to find to project the object onto our screen." src='Pictures/projection_1.png'>
 
           <p>A crude diagram showing us our ultimate objective... if we can do this in 2D then 3D will be a cinch!</p>
           </br>
@@ -160,7 +160,7 @@
           <p>Now brush up on some of those geometry lessons you haven't thought about in years, because we're gonna need
             'em! Let's try drawing a right triangle using the line between the viewer and the object, like so:</p>
 
-          <img class='center' src='Pictures/projection_2.png'>
+          <img class='center' alt="Picture with a triangle drawn between the viewer and an object" src='Pictures/projection_2.png'>
 
           <p>The adjacent side is labeled as Y and the opposite side is labeled as X, with Y being the y distance
             between the viewer and the object and X being the x distance between the viewer and the object. And no,
@@ -168,25 +168,25 @@
             there isn't one, but TWO triangles here: the one we drew and a smaller version of that same triangle created
             by the intersection between the triangle and the clipping plane:</p>
 
-          <img class='center' src='Pictures/projection_3.png'>
+          <img class='center' alt="Picture with a triangle drawn between the viewer and an object and a second triangle made between the viewer and the screen" src='Pictures/projection_3.png'>
 
           <p>The second triangle is highlighted in red!</br>I went ahead and labeled the adjacent side of the smaller
             triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually
             establish a scale ratio between the two triangles that will solve the problem for us.</p>
 
-          <img class='center' src='Pictures/projection_4.png'>
+          <img class='center' alt="Picture describing the ratio between the viewer and the screen and the distance to the object" src='Pictures/projection_4.png'>
 
           <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled
             "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the
             point right??? Well..... it's probably better to just show you: </p>
 
-          <img class='center' src='Pictures/projection_oops.png'>
+          <img class='center' alt="Picture illustrating an error with using just dx alone to get the point" src='Pictures/projection_oops.png'>
 
           <p>We were close! However, X is the distance between the object and the viewer, and if the distance is nothing
             then the projection point also lies at zero. We actually need to add half of the length of the screen's
             width to get the right result!</br></br>So the final formula comes around to: </p>
 
-          <img class='center' src='Pictures/projection_final.png'>
+          <img class='center' alt="Picture illustrating that we have to add half the screen's width to dx" src='Pictures/projection_final.png'>
 
           </br></br>
 
@@ -211,26 +211,26 @@
             would really care. BUT, you could also use FOV (Field of View) to determine how far or near the viewer
             should sit! This means trigonometry YEAHHHHHHH</p>
 
-          <img class='center' src='Pictures/projection_fov_1.png'></br>
+          <img class='center' alt="Picture describing our goal to find the viewer's distance to the screen using our Field of View and screen width" src='Pictures/projection_fov_1.png'></br>
 
           <p>More crude drawings. You love them, you really do.</br>Our goal this time is to find "dy" using our FOV
             angle and our screen width. The former we can set ourselves and the latter we should already know!</br>(Oh,
             and FOV Angle is halved because the dy line cuts the angle in half)</p>
 
-          <img class='center' src='Pictures/projection_fov_2.png'></br>
+          <img class='center' alt="Picture showing a triangle between the viewer, half the screen's width, and the distance from the viewer and the screen." src='Pictures/projection_fov_2.png'></br>
 
           <p>Oh hey look a triangle</br>Now we know that the opposite side is half of the screen's width. We've got an
             angle, the length of the opposite side, and we need to know the length of the adjacent side.</br>The tangent
             of an angle <u>(FOV Angle / 2)</u> is equal to the length of the opposite side <u>(Screen Width / 2)</u>
             divided by the length of adjacent side <u>(dy)</u>, so let's use that!</p>
 
-          <img class='center' src='Pictures/projection_fov_3.png'></br>
+          <img class='center' alt="Picture showing that Tangent of half our FOV is equal to half our screen width divided by the distance between our viewer and the screen." src='Pictures/projection_fov_3.png'></br>
 
           <p>Now we're getting somewhere!</br>Finally, let's solve for dy by rearranging the equation using basic
             algebra. If you're lost then I suggest it's time to hit the books, dweebenheimer!</br>(It's really simple
             though, multiply by dy on both sides then divide by Tan(FOV/2) on both sides)</p>
 
-          <img class='center' src='Pictures/projection_fov_4.png'></br>
+          <img class='center' alt="Picture showing how we get the distance between the viewer and the screen by manipulating the previous equation. It's half our screen's width divided by the Tangent of half our FOV." src='Pictures/projection_fov_4.png'></br>
 
           <p>That gives us dy = Half of Screen Width / Tan(Half of FOV). Not too bad, huh?</br>Now check it!</p>
 
@@ -250,7 +250,7 @@
             profound as when the FOV is very wide!</br>At this point, we now have EVERYTHING we need in order to do some
             SUPER SCALIN'!</p>
 
-          <h2 class="headertext">Let's do some <a href="defining3.html">SUPER SCALING</a></h2>
+          <h2 class="headertext">Let's do some SUPER SCALING on the <a href="defining3.html">Next Page</a>!</h2>
 
         </div>
       </div>
@@ -259,7 +259,7 @@
     <!--Footer-->
     <footer class="row">
       <div class="col-lg p-4 bg-dark text-white">
-        <h5 class="text-center">2022 Michael Sanders</h5>
+        <h2 class="text-center">2022 Michael Sanders</h2>
         <p class="text-center">Contact me at <a href="mailto: terrysanders256@gmail.com">terrysanders256@gmail.com</a>
           for questions or anything else!</p>
         <p id="modified" class="text-center">
