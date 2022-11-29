@@ -56,6 +56,10 @@ html, body {
   z-index: 5;
 }
 
+main{
+  width: 100%;
+}
+
 /* 320 x 224, arcade resolution! */
 .canvasborder{
   border: 1px solid #000000

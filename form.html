@@ -115,45 +115,60 @@
     <!--Main Page Content-->
     <main>
       <!--Parallax background-->
-      <div class="parallaxBG">
-        <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
-          <h2 class="headertext">Welcome to the Exciting Circuit!</h2></br>
-
-          <p>Hey there! Welcome to My Super Scaler "Pseudo 3D" page, please take a look around!</p></br></br>
-
-          <h2 class="headertext">What's this all about anyways?</h2></br>
-
-          <p>This is a site dedicated to my love of the visual technique of "Super Scaler" video games. If you want to
-            know more about the history and a general idea of what it is, click that "What is a Super Scaler" link in
-            the navbar up top!</p></br></br>
-
-          <h2 class="headertext">But why?</h2></br>
-
-          <p>Would you believe me if I said "I played Sonic Drift as a kid and thought it was the coolest thing ever so
-            now I research old arcade games for a living"</p></br></br>
-
-          <img class='center' src="Pictures/Sonic Drift (Japan)000.bmp">
-          <div class='imagetext'>This is the game that started my fascination. No, really!</div>
-
-          </br></br>
-
-          <h2 class="headertext">Is that all</h2></br>
-
-          <p>Well, I was also inspired by Lou Gorenfeld's old page on the same topic, lovingly titled <a
-              href="http://www.extentofthejam.com/pseudo/">"Lou's Pseudo 3D page"</a>, which is still an excellent
-            resource and one I recommend you read as well!<br>I suppose this site serves as "bookends" of sorts for me,
-            I remember reading this site back around when it was new in 2013 or 2014 and being completely lost. I was
-            new to programming at the time and could hardly understand any of the pseudocode or math that was going on.
-            As the years passed however, I eventually learned the skills necessary to both replicate and understand the
-            effect pretty well.<br>So I guess in my own little way, this is me saying thanks. I also feel that some of
-            what he goes over could be elaborated a lot more, so I intend to do that as well. Think of it as an extended
-            cut of sorts!</p></br></br>
-
-          <h2 class="headertext">But enough chit-chat, click one of those links up there and start READIN'! Or, click <a href="intro.html">HERE</a> to skip to the next page~
-          </h2>
-
-        </div>
+  <div class="parallaxBG">
+    <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
+      <h2 class="headertext">That's right... it's FORM TIME YEAHAH!!</h2>
+      <form name="myform">
+        
+        <!--Enjoyment???-->
+       <label for="enjoy">Write a review of this website here! It doesn't matter what you say, I won't be able to read it anyways!!</label>
+        <textarea class="form-control" rows="5" id="enjoy" name="enjoy"></textarea></br>
+        
+        <!--Skillzzzz-->
+      <label for="learn">What have you learned that you hadn't before!</label></br>
+      <input type="checkbox" id="learn" name="learn1" value="Sprites!">Sprites exist!</br>
+      <input type="checkbox" id="learn" name="learn2" value="Windows!">Projection is like a window or something I think!</br>
+      <input type="checkbox" id="learn" name="learn3" value="Gaming!">Sometimes video games are very cool!</br>
+      </br>
+        
+        <!--Naming-->
+      <label for="name">*Ok but also what's your name. This is required, do not disappoint me.</label></br>
+      <input type="text" name="name" id="name"></br></br>
+        
+      <!--What'd you think!-->
+      <p>What do you think of this form?</p>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="form1" name="form" value="It sure was! How naive. How foolish." checked>It sure was!
+        <label class="form-check-label" for="form1"></label>
       </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="form2" name="form" value="You'd like to phone a friend, but no friend can help you!">Phone a friend
+        <label class="form-check-label" for="form2"></label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="form3" name="form" value="Silly you, vowels are free!">Buy a vowel
+        <label class="form-check-label" for="form3"></label>
+      </div></br></br>
+        
+      <!--Pick a color!-->
+        <label for="webcolor" class="form-label">What color does this website make you think of?</label>
+        <input type="color" class="form-control form-control-color" name="webcolor" id="webcolor" value="#FF0000" title="Pick a color!">
+</br></br>
+        
+      <!--SUBMIT!!-->
+       <button type="button" onclick="formSubmit()" class="btn btn-primary">Submit</button>
+      </form>
+
+      <!--Form Results-->
+      </br>
+      <p id="yourName"></br></p>
+      <p id="yourForm"></br></p>
+      <p id="youLearned"></br></p>
+      <p id="favoriteColor"></br></p>
+      <p id="yourThoughts"></br></p>
+      
+    </div>
+    </div>
     </main>
 
     <!--Footer-->

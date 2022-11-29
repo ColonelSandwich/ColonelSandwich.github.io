@@ -1,5 +1,6 @@
-// This code was not all created by me!!
-// A lot of it is from https://bootstrap-menu.com/detail-fixed-onscroll.html
+
+// This function was not all created by me!!
+// I modified it from https://bootstrap-menu.com/detail-fixed-onscroll.html
 // This allows the navbar to stay attached to the top of the screen without using sticky-top, which not all browsers support.
 document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('scroll', function() {
@@ -10,28 +11,59 @@ document.addEventListener("DOMContentLoaded", function() {
     if (rect.bottom < 0) {
       nav.classList.add('fixed-top');
       // add padding top to show content behind navbar
-      elem.style.padding = "0px 0px " + nav_rect.height + "px"; 
-    } if(rect.bottom - nav_rect.height > 0) {
+      elem.style.padding = "0px 0px " + nav_rect.height + "px";
+    } if (rect.bottom - nav_rect.height > 0) {
       document.getElementById('navbar_top').classList.remove('fixed-top');
       // remove padding top from body
       elem.style.padding = "0px 0px 0px";
     }
   });
 });
-// DOMContentLoaded  end
+// DOMContentLoaded end
 
-// Default view resolution
+// Function that updates elements in the document upon submission of form
+function formSubmit() {
+  let elem = document.forms["myform"]["learn1"];
+  let learn1 = elem.checked ? elem.value : "Nothing!";
+  elem = document.forms["myform"]["learn2"];
+  let learn2 = elem.checked ? elem.value : "Nothing!";
+  elem = document.forms["myform"]["learn3"];
+  let learn3 = elem.checked ? elem.value : "Nothing!";
+  let color = document.forms["myform"]["webcolor"].value;
+  let review = document.forms["myform"]["enjoy"].value;
+  let name = document.forms["myform"]["name"].value;
+  let form = document.forms["myform"]["form"].value;
+
+  // Oh! You didn't leave a review...
+  if(review == "")
+      review = "Nothing, apparently!";
+
+    // Change innerHTML
+  if(name != ""){
+    document.getElementById("yourName").innerHTML = "Your name is " + name + ". Excellent";
+    document.getElementById("yourForm").innerHTML = form;
+    document.getElementById("youLearned").innerHTML = "You have learned " + learn1 + ", " + learn2 + ", " + learn3;
+  document.getElementById("favoriteColor").style.backgroundColor = color;
+    document.getElementById("favoriteColor").style.width = 50;
+  document.getElementById("yourThoughts").innerHTML = "Here's what you thought of the site: <br>" + review;
+  }
+  else{
+    alert("ENTER A NAME");
+  }
+}
+
+// Default view resolution. 320 x 224, same as many arcade games!
 const width = 320;
 const height = 224;
 
 // Grab the tree image
 const img = new Image();             // Create new img element
-img.src = 'Pictures/funny_tree.png'; // Set source path
+img.src = 'Pictures/funny_tree.png'; // Our lovely tree :)
 
 // Grass color
 const grass = "rgba(64, 200, 64, 1)";
 
-// Initialize trees
+// It's called "initTrees" but really I just use it to initialize everything
 var initTrees = false;
 
 // Trees array and sorted trees array
@@ -66,11 +98,13 @@ class Tree {
     this.world_y = ry * Math.cos(ra) + rx * Math.sin(ra);
     this.world_z = this.z - cam.getZ();
   }
+  
   // Draw it!
   draw2D(ctx, img) {
     // Draw the image
     ctx.drawImage(img, this.x - 32, this.y - 32);
   }
+  
   // Draw it in 3D!
   draw3D(ctx, img, cam, scaled) {
     // Make sure not to draw objects that are behind the camera!
@@ -101,14 +135,20 @@ class Camera {
     this.FOV = FOV;
     this.viewDist = (width / 2) / (Math.tan((this.FOV / 2) * Math.PI / 180));
   }
+  
+  // Set the camera's position
   setPosition(x, y, z) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
+
+  // Set the camera's angle (yaw)
   setAngle(angle) {
     this.angle = angle;
   }
+
+  // Set the camera's Field of View and recalculate the viewDist
   setFOV(FOV) {
     this.FOV = FOV;
     this.viewDist = (width / 2) / (Math.tan((this.FOV / 2) * Math.PI / 180));
@@ -213,6 +253,10 @@ function trees3DProjectionDemo() {
   // Now they rotate !!
   drawGroundSky("canvas4", grass, "aqua");
   drawTrees3D("canvas4", rotatingDot, true, true);
+  // Draw trees but they're THREE DEE
+  // Now they rotate, but they don't scale !!
+  drawGroundSky("canvas5", grass, "aqua");
+  drawTrees3D("canvas5", rotatingDot, false, true);
   // Animation !!
   window.requestAnimationFrame(trees3DProjectionDemo);
 }
