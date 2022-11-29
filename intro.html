@@ -22,7 +22,7 @@
     </header>
 
     <!--Aside Carousel-->
-    <aside>
+    <aside id="carousel_top">
       <div class="col-lg bg-light">
 
         <!-- Carousel -->
@@ -99,7 +99,7 @@
     </aside>
 
     <!--Navigation Bar-->
-    <nav class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
+    <nav id="navbar_top" class="navbar my-1 navbar-expand-sm bg-dark navbar-dark">
       <!--Collapse Button-->
       <button type="button" data-bs-toggle="collapse" data-bs-target="#navbar" class="navbar-toggler"><span
           class="navbar-toggler-icon"></span></button>
@@ -131,14 +131,15 @@
       <!--Parallax background-->
       <div class="parallaxBG">
         <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
-          <h2 class="text-center">What IS a "Super Scaler?"</h2>
+          <h2 class="headertext">What IS a "Super Scaler?"</h2>
 
           <p>This may be fairly obvious for you, but video games didn't always look as good as they do now! Many games
             these days use very complex 3D rendering tools and technologies that developers from the 80's and 90's could
             merely dream of using.</p>
 
           <img class='center' alt="Screenshot of The Last of Us 2." src='Pictures/tlou2.jpg'>
-          <div class='imagetext'>Screenshot of Naughty Dog's <span class='italic'>The Last of Us 2</span> on the PS4 Pro. Two decades ago, you'd
+          <div class='imagetext'>Screenshot of Naughty Dog's <span class='italic'>The Last of Us 2</span> on the PS4
+            Pro. Two decades ago, you'd
             need a dedicated CG
             workstation to get visuals this good!</div>
 
@@ -154,7 +155,8 @@
           </p>
 
           <img class='center' alt="Screenshot of Atari's Battlezone." src='Pictures/bzone_a.png'>
-          <div class='imagetext'>Atari's <span class='italic'>Battlezone</span> from 1980. Primitive, but an effective representation of a 3D world using
+          <div class='imagetext'>Atari's <span class='italic'>Battlezone</span> from 1980. Primitive, but an effective
+            representation of a 3D world using
             wireframe objects.</div>
 
           </br></br>
@@ -167,7 +169,8 @@
             enemies, and projectiles.</p>
 
           <img class='center' alt="Screenshot of Super Mario Bros." src='Pictures/NES_Super_Mario_Bros.png'>
-          <div class='imagetext'>The omnipresent <span class='italic'>Super Mario Bros.</span> from 1985. Mario, the Goombas, fireball, coin and
+          <div class='imagetext'>The omnipresent <span class='italic'>Super Mario Bros.</span> from 1985. Mario, the
+            Goombas, fireball, coin and
             starman in this scene are all sprites. The static elements like the clouds, ground, and bushes are
             background elements made up of tiles.</div>
 
@@ -180,7 +183,8 @@
           <p>
 
             <img class='center' alt="Screenshot of Marble Madness." src='Pictures/marble_a.png'>
-          <div class='imagetext'>Atari's <span class='italic'>Marble Madness</span> from 1984. Programmed by a young Mark Cerny, the game is notable
+          <div class='imagetext'>Atari's <span class='italic'>Marble Madness</span> from 1984. Programmed by a young
+            Mark Cerny, the game is notable
             for its impressive 3D look comprised of isometric 2D images.</div>
 
           </br></br>
@@ -192,7 +196,8 @@
             fill in the void left behind by the absence of 3D vector graphics?</p>
 
           <img class='center' alt="Screenshot of Atari's Empire Strikes Back arcade game." src='Pictures/esb.png'>
-          <div class='imagetext'>Atari's <span class='italic'>Empire Strikes Back</span> arcade game from 1985. Pretty late for a vector based
+          <div class='imagetext'>Atari's <span class='italic'>Empire Strikes Back</span> arcade game from 1985. Pretty
+            late for a vector based
             game... look at those AT-ATs!!</div>
 
           </br></br>
@@ -202,27 +207,33 @@
           <p>Drawing a sprite at this point was quite easy for hardware to do. If the hardware supported the ability to
             draw the image at different sizes, you could create a failry convincing 3D effect just by drawing sprites at
             different scales! Sprites closer to the screen could be scaled larger while sprites farther away from the
-            screen could be scaled smaller! Such was the case with Sega's <span class='italic'>Turbo</span> from 1981, possibly the earliest example
-            of a game that used sprites drawn at different sizes to replicate a 3D look. Namco's <span class='italic'>Pole Position</span> followed
+            screen could be scaled smaller! Such was the case with Sega's <span class='italic'>Turbo</span> from 1981,
+            possibly the earliest example
+            of a game that used sprites drawn at different sizes to replicate a 3D look. Namco's <span
+              class='italic'>Pole Position</span> followed
             suit a year later, using sprites and <u>scanline</u> effects to draw a convincing 3D environment made up of
             a road, other drivers, and several roadside objects such as signs and billboards.</p>
 
           <img class='center' alt="Screenshot of Namco's Pole Position." src='Pictures/poleposa.png'>
-          <div class='imagetext'>Namco's <span class='italic'>Pole Position</span> from 1982. A pretty smooth looking game, especially for its time.
+          <div class='imagetext'>Namco's <span class='italic'>Pole Position</span> from 1982. A pretty smooth looking
+            game, especially for its time.
           </div>
 
           </br></br>
 
           <p>These kinds of sprite based 3D games didn't really take off in popularity until around 1985, when Yu Suzuki
-            produced both <span class='italic'>Space Harrier</span> and <span class='italic'>Hang-On</span> for Sega. While they used the same techniques as the aformentioned
-            <span class='italic'>Turbo</span> and <span class='italic'>Pole Position</span>, the graphics hardware had advanced enough to visually blow both of them out of the
+            produced both <span class='italic'>Space Harrier</span> and <span class='italic'>Hang-On</span> for Sega.
+            While they used the same techniques as the aformentioned
+            <span class='italic'>Turbo</span> and <span class='italic'>Pole Position</span>, the graphics hardware had
+            advanced enough to visually blow both of them out of the
             water. Not only were they visually stunning to look at, but both games were also FAST due to the relative
             simplicity of only having to draw sprites at different sizes rather than objects made up of several
             polygons. Many other companies took notice to these new "scaler" type games and began producing their own.
           </p>
 
           <img class='center' alt="Screenshot of Space Harrier." src='Pictures/sharrier_a.png'>
-          <div class='imagetext'>Sega's <span class='italic'>Space Harrier</span> from 1985. Yu Suzuki's rail shooter masterpiece! Moai heads!!
+          <div class='imagetext'>Sega's <span class='italic'>Space Harrier</span> from 1985. Yu Suzuki's rail shooter
+            masterpiece! Moai heads!!
           </div>
 
           </br></br>
@@ -232,7 +243,8 @@
           <p>So then, what IS a "Super Scaler?" The term refers to the computer graphics technique of using sprites and
             scanline effects to reproduce a 3D looking effect. Many games in the years following would use the effect
             due to the hardware and technology for it being far more readily available than for polygon-based 3D. Even
-            with the advent of new polygonal 3D games such as Namco's <span class='italic'>Winning Run</span> in 1988 and Atari's <span class='italic'>Hard Drivin'</span> in
+            with the advent of new polygonal 3D games such as Namco's <span class='italic'>Winning Run</span> in 1988
+            and Atari's <span class='italic'>Hard Drivin'</span> in
             1989, Super Scalers still had their place thanks to their speed and visual fidelity. Super Scalers would
             continue to be used in games both in arcades and on home consoles for several more years...</p>
 
@@ -240,22 +252,27 @@
           </br>
           <img class='center' alt="Screenshot of Super Monaco GP." src='Pictures/smgp_a.png'>
 
-          <div class='imagetext'>Comparison between Namco's <span class='italic'>Winning Run</span> from '88 (top) and Sega's <span class='italic'>Super Monaco GP from '89</span>. The latter moves a lot smoother and is more vibrant, however the former was more impressive for its time.</div>
+          <div class='imagetext'>Comparison between Namco's <span class='italic'>Winning Run</span> from '88 (top) and
+            Sega's <span class='italic'>Super Monaco GP from '89</span>. The latter moves a lot smoother and is more
+            vibrant, however the former was more impressive for its time.</div>
 
           </br></br>
 
           <p>...however, much like vector based games before it, Sprite Based 3D would eventually become outdated thanks
-            to advancements in polygonal 3D technology. Games like Namco's <span class='italic'>Ridge Racer</span> in 1993 and Sega's <span class='italic'>Daytona USA</span> in
+            to advancements in polygonal 3D technology. Games like Namco's <span class='italic'>Ridge Racer</span> in
+            1993 and Sega's <span class='italic'>Daytona USA</span> in
             1994 both had full 3D with <u>texture-mapped</u> polygons running at a blazing fast 60 <u>frames per
               second</u>; on par with most Super Scalers at the time! And thus, 1995 would be the last hurrah for Super
             Scaler titles in the arcades, with polygonal 3D becoming far more accessible for developers and also being
             more expected from consumers who came to arcades for graphics they couldn't get on home consoles.</p>
 
-<img class='center' alt="Screenshot of Sega Rally Championship." src='Pictures/segarally_c.jpg'>
-        </br>
+          <img class='center' alt="Screenshot of Sega Rally Championship." src='Pictures/segarally_c.jpg'>
+          </br>
           <img class='center' alt="Screenshot of Capcom's Slipstream." src='Pictures/slipstream_a.png'>
 
-          <div class='imagetext'><span class='italic'>Sega Rally Championship</span> (top) and Capcom's <span class='italic'>Slipstream</span> (bottom), both released in 1995. While Slipstream looks fantastic, you can't deny how far polygonal 3D had come in just 7 years!</div>
+          <div class='imagetext'><span class='italic'>Sega Rally Championship</span> (top) and Capcom's <span
+              class='italic'>Slipstream</span> (bottom), both released in 1995. While Slipstream looks fantastic, you
+            can't deny how far polygonal 3D had come in just 7 years!</div>
 
           </br></br>
 
@@ -267,7 +284,8 @@
 
           <img class='center' alt="Screenshot of Ansdor's Slipstream!" src='Pictures/slipstream.jpg'>
 
-          <div class='imagetext'>Ansdor's <span class='italic'>Slipstream</span>, released in 2018. It's like poetry: it rhymes!</div>
+          <div class='imagetext'>Ansdor's <span class='italic'>Slipstream</span>, released in 2018. It's like poetry: it
+            rhymes!</div>
 
           </br></br>
 
