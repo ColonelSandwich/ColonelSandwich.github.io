@@ -174,7 +174,7 @@
             triangle "dy," which is the distance between the viewer and the screen.</br>Thanks to this, we can actually
             establish a scale ratio between the two triangles that will solve the problem for us.</p>
 
-          <img class='center' alt="Picture describing the ratio between the viewer and the screen and the distance to the object" src='Pictures/projection_4.png'>
+          <img class='center' alt="Picture describing the ratio between the triangles" src='Pictures/projection_4.png'>
 
           <p>The scale ratio is simply dy/Y, which we can use to find the opposite side of the smaller triangle (labeled
             "dx") simply by multiplying X by the scale ratio.</br>So dx = scale ratio * X, that means we've found the
@@ -211,26 +211,26 @@
             would really care. BUT, you could also use FOV (Field of View) to determine how far or near the viewer
             should sit! This means trigonometry YEAHHHHHHH</p>
 
-          <img class='center' alt="Picture describing our goal to find the viewer's distance to the screen using our Field of View and screen width" src='Pictures/projection_fov_1.png'></br>
+          <img class='center' alt="Picture describing our goal to find the viewer's distance from the screen" src='Pictures/projection_fov_1.png'></br>
 
           <p>More crude drawings. You love them, you really do.</br>Our goal this time is to find "dy" using our FOV
             angle and our screen width. The former we can set ourselves and the latter we should already know!</br>(Oh,
             and FOV Angle is halved because the dy line cuts the angle in half)</p>
 
-          <img class='center' alt="Picture showing a triangle between the viewer, half the screen's width, and the distance from the viewer and the screen." src='Pictures/projection_fov_2.png'></br>
+          <img class='center' alt="A triangle between the viewer, half the screen's width, and the viewer screen distance." src='Pictures/projection_fov_2.png'></br>
 
           <p>Oh hey look a triangle</br>Now we know that the opposite side is half of the screen's width. We've got an
             angle, the length of the opposite side, and we need to know the length of the adjacent side.</br>The tangent
             of an angle <u>(FOV Angle / 2)</u> is equal to the length of the opposite side <u>(Screen Width / 2)</u>
             divided by the length of adjacent side <u>(dy)</u>, so let's use that!</p>
 
-          <img class='center' alt="Picture showing that Tangent of half our FOV is equal to half our screen width divided by the distance between our viewer and the screen." src='Pictures/projection_fov_3.png'></br>
+          <img class='center' alt="Tangent of half our FOV is equal to half our screen width divided by the viewer screen distance." src='Pictures/projection_fov_3.png'></br>
 
           <p>Now we're getting somewhere!</br>Finally, let's solve for dy by rearranging the equation using basic
             algebra. If you're lost then I suggest it's time to hit the books, dweebenheimer!</br>(It's really simple
             though, multiply by dy on both sides then divide by Tan(FOV/2) on both sides)</p>
 
-          <img class='center' alt="Picture showing how we get the distance between the viewer and the screen by manipulating the previous equation. It's half our screen's width divided by the Tangent of half our FOV." src='Pictures/projection_fov_4.png'></br>
+          <img class='center' alt="Viewer screen distance half our screen's width divided by the Tangent of half our FOV." src='Pictures/projection_fov_4.png'></br>
 
           <p>That gives us dy = Half of Screen Width / Tan(Half of FOV). Not too bad, huh?</br>Now check it!</p>
 

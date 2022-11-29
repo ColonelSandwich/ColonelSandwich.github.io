@@ -1,3 +1,4 @@
+/* Set font */
 html, body {
   height: 100%;
   width: 100%;
@@ -5,23 +6,28 @@ html, body {
   font-size: 1.1em;
 }
 
+/* Text that goes directly underneat images */
 .imagetext{
   text-align: center;
   font-family: Calibri;
   font-size: 0.9em;
 }
 
+/* Header text */
 .headertext{
   text-align: center;
   font-weight: bold;
   font-family: "Arial Black";
 }
 
+/* Italic text to be used within span */
 .italic{
   font-style: italic;
 }
 
+/* Parallax Background */
 .parallaxBG {
+  
   /* The image used */
   background-image: url('Pictures/daytona_bg1.png');
 
@@ -36,28 +42,6 @@ html, body {
 
   /* Display below other elements */
   z-index: -5;
-}
-
-.logo
-{
-  /* The image used */
-  background-image: url('Pictures/AM2.png');
-
-  /* Full height */
-  height: 100%;
-
-  /* Positioning */
-  background-attachment: fixed;
-  background-position: right bottom;
-  background-repeat: no-repeat;
-  background-size: auto;
-
-  /* Display above other elements */
-  z-index: 5;
-}
-
-main{
-  width: 100%;
 }
 
 /* 320 x 224, arcade resolution! */
