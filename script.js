@@ -35,19 +35,20 @@ function formSubmit() {
   let form = document.forms["myform"]["form"].value;
 
   // Oh! You didn't leave a review...
-  if(review == "")
-      review = "Nothing, apparently!";
+  if (review == "")
+    review = "Nothing, apparently!";
 
-    // Change innerHTML
-  if(name != ""){
+  // Change innerHTML
+  if (name != "") {
     document.getElementById("yourName").innerHTML = "Your name is " + name + ". Excellent";
     document.getElementById("yourForm").innerHTML = form;
     document.getElementById("youLearned").innerHTML = "You have learned " + learn1 + ", " + learn2 + ", " + learn3;
-  document.getElementById("favoriteColor").style.backgroundColor = color;
+    document.getElementById("favoriteColorText").innerHTML = "This website makes you feel: <br>";
+    document.getElementById("favoriteColor").style.backgroundColor = color;
     document.getElementById("favoriteColor").style.width = 50;
-  document.getElementById("yourThoughts").innerHTML = "Here's what you thought of the site: <br>" + review;
+    document.getElementById("yourThoughts").innerHTML = "Here's what you thought of the site: <br>" + review;
   }
-  else{
+  else {
     alert("ENTER A NAME");
   }
 }
@@ -98,13 +99,13 @@ class Tree {
     this.world_y = ry * Math.cos(ra) + rx * Math.sin(ra);
     this.world_z = this.z - cam.getZ();
   }
-  
+
   // Draw it!
   draw2D(ctx, img) {
     // Draw the image
     ctx.drawImage(img, this.x - 32, this.y - 32);
   }
-  
+
   // Draw it in 3D!
   draw3D(ctx, img, cam, scaled) {
     // Make sure not to draw objects that are behind the camera!
@@ -135,7 +136,7 @@ class Camera {
     this.FOV = FOV;
     this.viewDist = (width / 2) / (Math.tan((this.FOV / 2) * Math.PI / 180));
   }
-  
+
   // Set the camera's position
   setPosition(x, y, z) {
     this.x = x;

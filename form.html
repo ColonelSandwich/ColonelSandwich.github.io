@@ -33,12 +33,12 @@
           <div class="carousel-inner">
 
             <!--Image 1-->
-              <div class="carousel-item active text-center carouselbg1">
-                <div class="col-lg bg-dark bg-opacity-75 text-white">
-                  <h3>Home</h3>
-                  <p>What's this site about? This should tell you!</p>
-                </div>
+            <div class="carousel-item active text-center carouselbg1">
+              <div class="col-lg bg-dark bg-opacity-75 text-white">
+                <h3>Home</h3>
+                <p>What's this site about? This should tell you!</p>
               </div>
+            </div>
 
             <!--Image 2-->
             <div class="carousel-item text-center carouselbg2">
@@ -115,60 +115,67 @@
     <!--Main Page Content-->
     <main>
       <!--Parallax background-->
-  <div class="parallaxBG">
-    <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
-      <h2 class="headertext">That's right... it's FORM TIME YEAHAH!!</h2>
-      <form name="myform">
-        
-        <!--Enjoyment???-->
-       <label for="enjoy">Write a review of this website here! It doesn't matter what you say, I won't be able to read it anyways!!</label>
-        <textarea class="form-control" rows="5" id="enjoy" name="enjoy"></textarea></br>
-        
-        <!--Skillzzzz-->
-      <label for="learn">What have you learned that you hadn't before!</label></br>
-      <input type="checkbox" id="learn" name="learn1" value="Sprites!">Sprites exist!</br>
-      <input type="checkbox" id="learn" name="learn2" value="Windows!">Projection is like a window or something I think!</br>
-      <input type="checkbox" id="learn" name="learn3" value="Gaming!">Sometimes video games are very cool!</br>
-      </br>
-        
-        <!--Naming-->
-      <label for="name">*Ok but also what's your name. This is required, do not disappoint me.</label></br>
-      <input type="text" name="name" id="name"></br></br>
-        
-      <!--What'd you think!-->
-      <p>What do you think of this form?</p>
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="form1" name="form" value="It sure was! How naive. How foolish." checked>It sure was!
-        <label class="form-check-label" for="form1"></label>
-      </div>
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="form2" name="form" value="You'd like to phone a friend, but no friend can help you!">Phone a friend
-        <label class="form-check-label" for="form2"></label>
-      </div>
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="form3" name="form" value="Silly you, vowels are free!">Buy a vowel
-        <label class="form-check-label" for="form3"></label>
-      </div></br></br>
-        
-      <!--Pick a color!-->
-        <label for="webcolor" class="form-label">What color does this website make you think of?</label>
-        <input type="color" class="form-control form-control-color" name="webcolor" id="webcolor" value="#FF0000" title="Pick a color!">
-</br></br>
-        
-      <!--SUBMIT!!-->
-       <button type="button" onclick="formSubmit()" class="btn btn-primary">Submit</button>
-      </form>
+      <div class="parallaxBG">
+        <div class="p-4 col-lg bg-dark bg-opacity-75 text-white">
+          <h2 class="headertext">That's right... it's FORM TIME YEAHAH!!</h2>
+          <form name="myform">
 
-      <!--Form Results-->
-      </br>
-      <p id="yourName"></br></p>
-      <p id="yourForm"></br></p>
-      <p id="youLearned"></br></p>
-      <p id="favoriteColor"></br></p>
-      <p id="yourThoughts"></br></p>
-      
-    </div>
-    </div>
+            <!--Enjoyment???-->
+            <label for="enjoy">Write a review of this website here! It doesn't matter what you say, I won't be able to
+              read it anyways!!</label>
+            <textarea class="form-control" rows="5" id="enjoy" name="enjoy"></textarea></br>
+
+            <!--Skillzzzz-->
+            <label for="learn">What have you learned that you hadn't before!</label></br>
+            <input type="checkbox" id="learn" name="learn1" value="Sprites!">Sprites exist!</br>
+            <input type="checkbox" id="learn" name="learn2" value="Windows!">Projection is like a window or something I
+            think!</br>
+            <input type="checkbox" id="learn" name="learn3" value="Gaming!">Sometimes video games are very cool!</br>
+            </br>
+
+            <!--Naming-->
+            <label for="name">*Ok but also what's your name. This is required, do not disappoint me.</label></br>
+            <input type="text" name="name" id="name"></br></br>
+
+            <!--What'd you think!-->
+            <p>What do you think of this form?</p>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="form1" name="form"
+                value="It sure was! How naive. How foolish." checked>It sure was!
+              <label class="form-check-label" for="form1"></label>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="form2" name="form"
+                value="You'd like to phone a friend, but no friend can help you!">Phone a friend
+              <label class="form-check-label" for="form2"></label>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="form3" name="form"
+                value="Silly you, vowels are free!">Buy a vowel
+              <label class="form-check-label" for="form3"></label>
+            </div></br></br>
+
+            <!--Pick a color!-->
+            <label for="webcolor" class="form-label">What color does this website make you think of?</label>
+            <input type="color" class="form-control form-control-color" name="webcolor" id="webcolor" value="#FF0000"
+              title="Pick a color!">
+            </br></br>
+
+            <!--SUBMIT!!-->
+            <button type="button" onclick="formSubmit()" class="btn btn-primary">Submit</button>
+          </form>
+
+          <!--Form Results-->
+          </br>
+          <p id="yourName"></br></p>
+          <p id="yourForm"></br></p>
+          <p id="youLearned"></br></p>
+          <p id="yourThoughts"></br></p>
+          <p id="favoriteColorText"></br></p>
+          <p id="favoriteColor"></br></p>
+
+        </div>
+      </div>
     </main>
 
     <!--Footer-->
