@@ -64,7 +64,7 @@ html, body {
 .carouselbg1{
   background-image: url("Pictures/outrun_a.png");
   background-size: cover;
-  background-position-y: 10%;
+  background-position-y: 20%;
 }
 
 .carouselbg2{
@@ -88,7 +88,7 @@ html, body {
 .carouselbg5{
   background-image: url("Pictures/Screenshot_4.png");
   background-size: 100%;
-  background-position-y: 10%;
+  background-position-y: 50%;
 }
 
 .center {
