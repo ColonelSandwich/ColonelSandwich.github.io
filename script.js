@@ -21,6 +21,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // DOMContentLoaded end
 
+// Add last update
+function addLastUpdate() {
+  const date = new Date(document.lastModified);
+  document.getElementById("modified").innerHTML = "Updated last on " + date.toDateString();
+}
+
+// On load, do this
+$(window).on('load', addLastUpdate);
+
 // Function that updates elements in the document upon submission of form
 function formSubmit() {
   let elem = document.forms["myform"]["learn1"];
