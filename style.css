@@ -65,43 +65,65 @@ main{
   border: 1px solid #000000
 }
 
+/* Carousel background image 1 */
 .carouselbg1{
   background-image: url("Pictures/outrun_a.png");
   background-size: cover;
   background-position-y: 20%;
 }
 
+/* Carousel background image 2 */
 .carouselbg2{
   background-image: url("Pictures/poleposa.png");
   background-size: 100%;
   background-position-y: 20%;
 }
 
+/* Carousel background image 3 */
 .carouselbg3{
   background-image: url("Pictures/hangon_a.png");
   background-size: 100%;
   background-position-y: 10%;
 }
 
+/* Carousel background image 4 */
 .carouselbg4{
   background-image: url("Pictures/projection.jpg");
   background-size: 100%;
   background-position-y: 10%;
 }
 
+/* Carousel background image 5 */
 .carouselbg5{
   background-image: url("Pictures/Screenshot_4.png");
   background-size: 100%;
   background-position-y: 50%;
 }
 
+/* Center the image */
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* Carousel item */
 .carousel-item {
   padding-top: 100px;
   height: 320px;
+}
+
+/* Normal link */
+a:link {
+  color: aqua;
+}
+
+/* Visited link */
+a:visited {
+  color: #bc74ec;
+}
+
+/* Mouse hover link */
+a:hover {
+  color:#ccfffc;
 }
