@@ -30,14 +30,14 @@ function addLastUpdate() {
 // On load, do this
 $(window).on('load', addLastUpdate);
 
+// Form helper function that returns an appropriate string if a checkbox element has been checked
+function formCheckboxString(checkboxElement){
+  return (checkboxElement.checked) ? checkboxElement.value : "Nothing!";
+}
+
 // Function that updates elements in the document upon submission of form
 function formSubmit() {
-  let elem = document.forms["myform"]["learn1"];
-  let learn1 = elem.checked ? elem.value : "Nothing!";
-  elem = document.forms["myform"]["learn2"];
-  let learn2 = elem.checked ? elem.value : "Nothing!";
-  elem = document.forms["myform"]["learn3"];
-  let learn3 = elem.checked ? elem.value : "Nothing!";
+  let learn = document.forms["myform"]["learn"];
   let color = document.forms["myform"]["webcolor"].value;
   let review = document.forms["myform"]["enjoy"].value;
   let name = document.forms["myform"]["name"].value;
@@ -51,7 +51,7 @@ function formSubmit() {
   if (name != "") {
     document.getElementById("yourName").innerHTML = "Your name is " + name + ". Excellent";
     document.getElementById("yourForm").innerHTML = form;
-    document.getElementById("youLearned").innerHTML = "You have learned " + learn1 + ", " + learn2 + ", " + learn3;
+    document.getElementById("youLearned").innerHTML = "You have learned " + formCheckboxString(learn[0]) + ", " + formCheckboxString(learn[1]) + ", " + formCheckboxString(learn[2]);
     document.getElementById("favoriteColorText").innerHTML = "This website makes you feel: <br>";
     document.getElementById("favoriteColor").style.backgroundColor = color;
     document.getElementById("favoriteColor").style.width = 50;
