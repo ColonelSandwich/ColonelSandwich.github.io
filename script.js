@@ -1,14 +1,20 @@
 // This code was not all created by me!!
-// A majority of it is from https://bootstrap-menu.com/detail-fixed-onscroll.html
+// A lot of it is from https://bootstrap-menu.com/detail-fixed-onscroll.html
 // This allows the navbar to stay attached to the top of the screen without using sticky-top, which not all browsers support.
 document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('scroll', function() {
     const elem = document.getElementById("carousel_top");
     const rect = elem.getBoundingClientRect();
+    const nav = document.getElementById('navbar_top');
+    const nav_rect = nav.getBoundingClientRect();
     if (rect.bottom < 0) {
-      document.getElementById('navbar_top').classList.add('fixed-top');
-    } else {
+      nav.classList.add('fixed-top');
+      // add padding top to show content behind navbar
+      elem.style.padding = "0px 0px " + nav_rect.height + "px"; 
+    } if(rect.bottom - nav_rect.height > 0) {
       document.getElementById('navbar_top').classList.remove('fixed-top');
+      // remove padding top from body
+      elem.style.padding = "0px 0px 0px";
     }
   });
 });
